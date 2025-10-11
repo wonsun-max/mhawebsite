@@ -1,0 +1,38 @@
+/* Tailwind v4 style imports + a few global utility keyframes & classes */
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@layer base {
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+    background: linear-gradient(180deg, #0f172a 0%, #0b1220 100%);
+    color: #111827;
+  }
+}
+
+/* Animations */
+@layer utilities {
+  @keyframes floaty {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+  }
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  .floaty { animation: floaty 6s ease-in-out infinite; }
+  .fade-up { animation: fadeUp .5s ease forwards; opacity: 0; transform: translateY(8px); }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* utility for subtle glass overlay */
+  .glass {
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(6px);
+  }
+}
