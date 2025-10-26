@@ -1,58 +1,268 @@
 // FILE: lib/curriculumData.ts
 export const elementary = {
-  title: 'Elementary Curriculum',
+  title: '초등 교육과정',
   goals: [
-    'Fundamental literacy and numeracy',
-    'Character development rooted in faith',
-    'Curiosity and creativity',
+    {
+      category: '한국인',
+      description: '자랑스런 대한민국 : 한국인임을 자랑스러워하는 어린이',
+    },
+    {
+      category: '기독인',
+      description: '사랑하는 하나님 : 예수님과 사람에게 사랑받는 어린이',
+    },
+    {
+      category: '국제인',
+      description: '섬겨야 할 세계 : 세계를 섬길 준비를 하는 어린이',
+    },
   ],
   operationPlans: [
-    { name: 'Language Arts', summary: 'Balanced literacy, reading comprehension, Korean & English basics' },
-    { name: 'Math', summary: 'Foundational number sense, problem solving' },
-    { name: 'Science & Social Studies', summary: 'Hands-on learning and local studies' },
+    {
+      name: '한국인',
+      items: [
+        '자랑스런 대한민국',
+        '한국어 교육과정 이행',
+        '독서교육 강화 : 학년 필독서, 독후활동지 활동, 관련 대회 및 시상',
+        '기초 계산력 기르기 : 학년별 수준별 기적의 계산법 (재량)',
+        '계기, 절기교육 : 6월 호국보훈의 달(현충일, 한국전쟁), 9월 추석, 10월 한글날 그 외 기타 계기 교육',
+        '초등 5대 생활덕목(순종, 존중, 배려, 책임, 정직) 실천하기',
+        '전교어린이회 활성화, 자치 활동 강화 : 매월 전교어린이회, 학기별 교내봉사 활동 계획 수립 후 실천, 회장단 중심의 자치 활동 강화(사랑의 성금, 식당봉사 등)',
+        '한인 관련 행사 참여(각종 대회)',
+      ],
+    },
+    {
+      name: '신앙인',
+      items: [
+        '사랑하는 하나님',
+        '학기별 신앙수련회를 통한 신앙성장과 공동체 훈련하기',
+        '교육과정에 녹아드는 기독교적 세계관',
+        '주 1회 정기예배, Q.T의 생활화, 성경 암송 , 찬송가 외워 쓰고 부르기',
+        '부모님 사역지 방문을 통한 비전세우기(필드트립 활용)',
+        '전교어린이회 사랑의 성금으로 예수님의 사랑 실천하기',
+        '학생-학부모-교사 기도체인 만들기-주간햑습안내, 알림장',
+      ],
+    },
+    {
+      name: '국제인',
+      items: [
+        '섬겨야 할 세계',
+        '영어 수업',
+        '필리핀 국가, Tagalog 찬양 익히기, 동아리 활동',
+        '사랑의 성금 모금: 월 1회 모금으로 어려운 이웃 돕기',
+        '한필 문화 축제 등 필리핀 행사 참여 권유',
+        '세계를 품고 기도하기(매월 선교예배)',
+      ],
+    }
   ],
-  weeklySchedule: [
-    { day: 'Mon', times: ['08:30-09:20 Math', '09:30-10:20 Korean', '10:40-11:30 PE'] },
-    { day: 'Tue', times: ['08:30-09:20 English', '09:30-10:20 Math', '10:40-11:30 Art'] },
-    // ... add all days
+  detailedOperationPlans: [
+    {
+      name: '학교에 맞는 적합하고 탄력적인 교육과정 운영',
+      items: [
+        '현지에 맞는 교육과정 편성 및 운영:복식학급운영(4학년, 5~6학년군 교육과정 재구성, 필수요소 지도, 교과목 중심지도',
+        '효율적인 담임 및 업무분장 (교무, 연구, 신앙, 생활)',
+        '학습자 중심의 영어 교육과정 편성 및 수준별 학습(통합, 분반교과학습)',
+        '한국어 2015개정 교육과정 운영',
+      ],
+    },
+    {
+      name: '다양한 은사 계발',
+      items: [
+        '동아리활동 프로그램 : 학기별로 개설 운영될 수 있음 Tagalog, Chinese Language',
+        '학기말 English Week 영어교육활동',
+        '각종 대회 : 수학경시대회, 독서 행사, 교내 그리기 대회, 성경암송대회, 찬송가 외워부르기 대회 등',
+        '각종 영어 대회 및 활동 : Book Talk, Speech Contest, Quiz Bee, Talent contest, See Fair 등',
+      ],
+    },
+    {
+      name: '필리핀 탐방 및 문화 체험',
+      items: [
+        'Outdoor : 초등 전교생 Outdoor (1박 2일) 필리핀 자연환경 및 문화 체험',
+      ],
+    },
+    {
+      name: '교사 연수',
+      items: [
+        '기독교 세계관과 선교에 관한 연수, MK관련 워크숍 연수 참여',
+        '영어연수 : 교사 개별 연수 및 교사 훈련 적극 참여',
+        '한국어 담임과 영어 담임 수시 모임',
+      ],
+    },
+    {
+      name: '교육과정 편제 및 시간 배당',
+      items: [],
+    },
+    {
+      name: '생활 시정표',
+      items: [],
+    },
   ],
-}
-
+};
 export const secondary = {
-  title: 'Middle & High Curriculum',
+  title: '중/고등 교육과정',
+  themeVerse: '너희는 이 일을 너희 자녀에게 말하고 너희 자녀는 자기 자녀에게 말하고 그 자녀는 후세에 말할 것이니라(욜1:3)',
+  anthem: '선한 능력으로',
+  slogan: '다음 세대와 함께 가는 공동체',
+  focus: '실천 주제 말씀(에베소서 1장 ~ 6장) 하나님께서 예수그리스도 안에서 우리를 하나님의 은혜의 영광을 찬송하게 하며(엡1:6), 은혜 영광의 찬송이(엡1:12) 되게 하신 복 있는 자임을 확신하고, 부르심을 받은 일에 합당하게 하여(엡4:1) 그리스도의 장성한 분량에 이르기까지(엡4:13) 자라는 마한아 공동체의 지체 (4:15-16)가 된다.',
   goals: [
-    'Academic readiness for university',
-    'Christian worldview integration',
-    'Global competence and language proficiency',
+    {
+      category: '실력',
+      description: '하나님의 나라와 공동체를 세워가는 실력 쌓기(사 61:4~5)',
+      items: [
+        '하나님을 아는 지식 쌓기(엡 1:17~)',
+        '세상을 아는 지식 쌓기(엡 2:1~9)',
+        '비전, 부르심을 아는 지식 쌓기(엡 2:10-3:8)',
+        '각 교과와 만물 속에 드러난 지식 쌓기(엡 3:9~3:22)',
+        '자기 관리 능력 향상 - 자기주도 학습 능력 배양',
+        '독서 습관화 - 폭넓은 독서를 통한 균형 잡힌 성장',
+        '말씀 읽기, 묵상 및 기도를 통해 주님과 교제',
+        '진로 진학 지도를 저학년으로 확대하여 체계화(교무부)',
+      ],
+    },
+    {
+      category: '헌신',
+      description: '제사장(priests)과 봉사자(minister)와 같은 삶의 자세(사 61:6~7)',
+      items: [
+        '하나님의 자녀로서의 정체성 확립(엡 1장)',
+        '경건의 모양과 능력을 갖추기 위한 훈련(엡 4:1~6:42)',
+        '자신의 은사(재능) 기부 운동을 통해 공동체 세우기 훈련',
+        '이웃을 섬길 수 있는 봉사활동이나 동아리 활동에 적극 참여',
+      ],
+    },
+    {
+      category: '성품',
+      description: '하나님과 사람 앞에 신실(Faithfulness)한 사람(사 61:8~9)',
+      items: [
+        '공의를 사랑한다(Love justice)',
+        '죄를 미워한다(Hate sin)',
+        '자신과의 약속, 시간, 규칙 지키기',
+        '의사소통 능력 기르기',
+      ],
+    },
   ],
-  operationPlans: [
-    { name: 'Core classes', summary: 'Korean, English, Math, Science with subject tracking' },
-    { name: 'Electives', summary: 'Fine Arts, Tech, Languages, Service Learning' },
-    { name: 'Assessment', summary: 'Formative & summative assessments, parent feedback cycles' },
+  operationGoals: [
+    {
+      category: '한국인 교육',
+      items: [
+        '한국인의 얼과 정체성을 확립하여 민족과 조국을 사랑하게 한다.',
+        '자신의 의사를 자유로이 구사할 수 있게 한다.',
+        '한국역사에 대한 바른 지식과 깊이를 가지고 기독교적 관점에서 재해석할 수 있는 능력을 기른다.',
+        '한국인으로서의 긍지를 갖고 어느 사회에서든 영향력 있는 사람이 되게 한다.',
+        '수학여행, 교환학생, 온라인, 멀티미디어 활용 등으로 한국 문화를 체험할 수 있는 기회를 확대한다.',
+        '한국 교육과정을 적절히 적용하여 모국으로 진로 진학의 방향을 모색하도록 돕는다.',
+      ],
+    },
+    {
+      category: '기독인 교육',
+      items: [
+        '세계 선교의 비전을 품은 하나님 나라의 시민으로 자라게 한다.',
+        '삼위일체 하나님을 예배하고 하나님과 교제하며 동행하는 학생이 되게 한다.',
+        '성경 묵상과 기도를 통해 성령의 충만 속에서 선교적 삶을 살게 한다.',
+        '이웃을 섬기는 구체적인 봉사의 생활을 통해 예수님의 제자로서의 도를 실천하도록 한다.',
+        '다중 언어와 다문화에 익숙한 선교사 자녀가 가지는 장점을 살려 장차 하나님 나라의 확장 사역에 쓰임 받는 인재가 되도록 한다.',
+      ],
+    },
+    {
+      category: '국제인 교육',
+      items: [
+        '세계를 품은 국제적 감각을 지닌 리더로 성장하게 한다.',
+        '타문화를 열린 마음으로 이해하고 수용하는 한편, 기독교 세계관으로 바라볼 수 있게 한다.',
+        '영어로 자신의 의사를 표현할 수 있으며, 영어를 학습언어로 사용할 수 있는 능력을 갖게 한다.',
+        '서로 다른 문화권 속에서 더불어 살아갈 수 있는 능력을 갖도록 한다.',
+      ],
+    },
   ],
-  dailyScheduleExample: [
-    { period: 1, time: '08:30-09:10', subject: 'Homeroom / Advisory' },
-    { period: 2, time: '09:15-10:00', subject: 'Math / English block' },
-    // ...
+  researchAreas: [
+    {
+      category: '진로 진학 상담실 운영 관련 연구',
+      items: [
+        '진로 진학 위원회 조직 및 과제 연구',
+        '진학 상담을 위한 자료 모음 및 정비',
+        '진학 지도를 위한 학생 개인 자료 정리 및 인계',
+        '진로 진학 지도를 위한 담임교사 연수',
+      ],
+    },
+    {
+      category: '학교 교육 철학과 목표에 따른 각종 행사 평가',
+      items: [
+        '교무 행정 체제 정비 및 보완',
+        '제 규정 정비',
+        '효율적 운영을 위한 조직 및 업무 분장 정비',
+        '교사의 전문성 제고를 위한 연수 기회 확대',
+        '행사 후 Feedback 의무화',
+        '다음 행사에 Feedback 결과 반영',
+      ],
+    },
+    {
+      category: '교과목 편제',
+      items: [
+        '가.중학교(7~9학년) 교육과정 편제',
+        '나.고등학교(10~12학년) 교육과정 편제',
+      ],
+    },
   ],
-}
-
+};
 export const activities = [
-  { id: 'a1', name: 'Music Club', desc: 'Choir and band activities' },
-  { id: 'a2', name: 'Science Club', desc: 'Hands-on experiments and fairs' },
-  { id: 'a3', name: 'Sports', desc: 'Football, basketball, athletics' },
-]
-
+  {
+    id: 'club1',
+    name: '동아리 활동1 [교육연구부]',
+    desc: '활동 시간 : 매주 금요일 7교시(15:10~15:55)\n전교생이 한 반을 선택하여 반드시 참여\n(개설반은 학기마다 변동이 있음)',
+  },
+  {
+    id: 'club2',
+    name: '동아리 활동2 [학생복지부]',
+    desc: '활동 시간 : 활동부서별 시간이 다름\n학생들이 희망하는 동아리에 자유롭게 선택 참여(1인 1동아리 참여 유도)\n(개설반은 학기마다 변동이 있음)',
+  },
+  {
+    id: 'volunteer',
+    name: '봉사활동 [학생복지부]',
+    desc: '전교생 봉사활동\n시간 : 학기별 17시간 실시. 활동별로 시간이 다름\n내용 : 교내환경정화, 도서관 정리 및 책 홍보 포스터 그리기, 찬양, 설교번역, 예배도우미, 학습지도, 행사사진 촬영 및 영상제작, 현지인 교회 어린이 학습지도, 보육원 봉사\n개인 봉사활동 : 의미 있는 봉사활동을 계획하고 적극적으로 참여토록 권장',
+  },
+  {
+    id: 'leadership',
+    name: '리더십 훈련',
+    desc: '필드 트립 [학생복지부]\n1학기 : 모둠별 기획 실행\n2학기 : 전체 기획\n미션 트립(Mission Trip)\n대상 : 9학년\n기간 : 2학기 중\n비전 트립(Vision Trip)\n대상 : 10학년\n기간 : 2학기 중\n졸업여행\n대상 : 12학년 학생\n기간 : 2학기 중',
+  },
+  {
+    id: 'certification',
+    name: '자격증 취득 프로그램',
+    desc: 'First-Aid : 1학기 중\n태권도 : 전교생 대상, 창의적 체험 활동, 매년 말 승급 및 승단 심사',
+  },
+  {
+    id: 'sports',
+    name: '체육 행사',
+    desc: '체육대회 : 학기별 1회\n현지 학교와 체육 및 전통 놀이 교류\n한인체육대회 참여',
+  },
+  {
+    id: 'english',
+    name: '영어 행사',
+    desc: '의미 : Academic, Literature, Music 의 세 단어를 줄여서 Acalitmus라 칭함\n취지 : 필리핀 학교 문화와 학생 문화를 이해하고, 나아가 필리핀 학생과의 교류를 통해 더불어 살아가는 글로벌 시대에 필요한 능력을 발전시키도록 함\n시기 : 매년 1회 1학기 중\n대상 : 전교생',
+  },
+  {
+    id: 'etc',
+    name: '기타',
+    desc: '각종 기념일 행사(개교기념일, 스승의날, 현충일, 한국전쟁 상기일, 한글날, 추석 등), 신앙수련회, 수학경시대회, 중국어 말하기 대회, 성경암송대회, 교내합창대회, 직업특강, 가든파티, 한아의 밤, 졸업식',
+  },
+];
 export const honors = {
-  description: 'Honors system recognizes exemplary students for academic and character excellence.',
-  criteria: [
-    'GPA threshold',
-    'Service hours minimum',
-    'Teacher recommendations',
+  title: '명예 학생 제도',
+  purpose: '학교의 교육목표에 따라 학교생활을 충실히 하며, 전인적 자기 성장을 꾀하고자 하는 학생을 선발하여 격려하는 제도로, 선발 과정을 통해 전인적인 성장 및 은사 계발, 그리고 리더십을 기를 수 있도록 지도한다.',
+  eligibility: [
+    '지난 학기 GPA 3.8 이상',
+    '2명 이상의 교사 추천을 받은 자',
+    '다음과 같은 결격 사유가 없는 자',
+    '- 교칙 위반으로 징계를 받은 사실(신청 직전 1년간)이 있는 자',
+    '- 신청 기간 중 교칙 위반으로 인한 징계와 훈계에 해당하는 처벌을 받은 자',
   ],
-  rewards: [
-    'Honor roll certificate',
-    'Scholarship / fee reduction (when applicable)',
-    'Public recognition at ceremonies',
+  applicationMethod: [
+    '매 학기 시작 첫 주, 오리엔테이션을 통해 구체적인 지원 방식 안내',
+    '매 학기 시작 후 둘째 주, 지원 양식을 구비하여 접수하며 학사일정에 맞춰 담당 교사가 일정을 공지',
   ],
-}
+  evaluation: {
+    areas: ['신앙', '협력', '봉사', '리더십'],
+    details: '각 영역별로 전반기 계획서와 평가서, 후반기 계획서와 평가서, 종합평가서의 5개 요소를 각 20점씩 100점 만점으로 평가',
+  },
+  selection: [
+    '채점 결과를 바탕으로 평가위원 협의회에서 선발 대상자 결정',
+    '선발 대상자를 교사들에게 공지하여 이의가 없을 시 명예학생으로 확정하고 기념품 지급',
+    '연속 2회 명예 학생에 선발된 학생에게 소정의 장학금 지급',
+  ],
+};

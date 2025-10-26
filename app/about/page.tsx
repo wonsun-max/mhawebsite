@@ -1,110 +1,88 @@
+
 'use client'
-import { motion } from 'framer-motion';
-import Timeline from '../../components/Timeline';
+import PageHero from "@/components/PageHero";
+import ContentSection from "@/components/ContentSection";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+
+const sections = [
+  {
+    href: '/about/vision',
+    title: '비전과 미션',
+    desc: '마닐라한국아카데미를 이끄는 근본적인 신념과 야심찬 목표를 발견해보세요.',
+    img: '/images/campus1.jpg',
+  },
+  {
+    href: '/about/principal',
+    title: '학교장 인사말',
+    desc: '존경하는 교장 선생님의 교육 철학에 대한 개인적인 환영과 통찰력.',
+    img: '/images/campus1.jpg',
+  },
+  {
+    href: '/about/history',
+    title: '우리의 풍부한 역사',
+    desc: 'MHA 창립 이래의 중요한 이정표와 지속적인 유산을 따라 여정을 떠나보세요.',
+    img: '/images/campus1.jpg', 
+  },
+  {
+    href: '/about/philosophy',
+    title: '교육 철학',
+    desc: '지적 호기심, 영적 성장, 전인적 발달을 촉진하는 우리의 독특한 접근 방식을 탐구해보세요.',
+    img: '/images/campus1.jpg', 
+  },
+  {
+    href: '/about/anthem',
+    title: '학교 교가',
+    desc: '우리의 정신을 구현하고 활기찬 커뮤니티를 하나로 묶는 영감을 주는 교가에 대해 알아보세요.',
+    img: '/images/campus1.jpg',
+  },
+  {
+    href: '/about/location',
+    title: '우리의 현대적인 캠퍼스',
+    desc: '최첨단 시설과 고요한 학습 환경을 가상으로 둘러보세요.',
+    img: '/images/campus1.jpg', 
+  },
+];
 
 export default function AboutPage() {
   return (
-    <main className="text-white">
-      {/* Hero Section */}
-      <section
-        className="relative h-[50vh] flex items-center justify-center bg-cover bg-center"
-        style={{ backgroundImage: 'linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.9)), url(/images/campus3.jpg)' }}
-      >
-        <div className="text-center px-6">
-          <motion.h1
-            className="text-5xl font-extrabold mb-3"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            About Our School
-          </motion.h1>
-          <motion.p
-            className="text-white/80 max-w-2xl mx-auto"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          >
-            Nurturing faith, wisdom, and character — where every student discovers their purpose.
-          </motion.p>
+    <div>
+      <PageHero 
+        title="학교소개"
+        subtitle="한국인 선교사 자녀를 위한 학교 마닐라한국아카데미입니다."
+        image="/images/campus1.jpg"
+      />
+      <ContentSection>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {sections.map((s, i) => (
+            <motion.div
+              key={s.title}
+              className="bg-gray-800 rounded-2xl overflow-hidden shadow-lg"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+              whileHover={{ y: -10, scale: 1.05 }}
+            >
+              <div className="relative w-full h-48">
+                <Image
+                  src={s.img}
+                  alt={s.title}
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2">{s.title}</h3>
+                <p className="text-gray-400 mb-4">{s.desc}</p>
+                <Link href={s.href} className="text-blue-400 hover:underline">
+                  더 알아보기
+                </Link>
+              </div>
+            </motion.div>
+          ))}
         </div>
-      </section>
-
-      {/* Mission & Vision */}
-      <section className="py-16 bg-slate-900/50">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <motion.div
-            className="glass rounded-2xl p-8"
-            whileHover={{ scale: 1.02 }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <img src="/images/mission.jpg" alt="Mission" className="rounded-lg mb-4 w-full h-52 object-cover" />
-            <h2 className="text-2xl font-bold mb-2">Our Mission</h2>
-            <p className="text-white/80 text-sm">
-              To educate and inspire students to lead with integrity, compassion, and faith — preparing them to serve the world with excellence.
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="glass rounded-2xl p-8"
-            whileHover={{ scale: 1.02 }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <img src="/images/vision.jpg" alt="Vision" className="rounded-lg mb-4 w-full h-52 object-cover" />
-            <h2 className="text-2xl font-bold mb-2">Our Vision</h2>
-            <p className="text-white/80 text-sm">
-              To be a beacon of Christian education that transforms young minds into lifelong learners and compassionate leaders.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Principal's Message */}
-      <section className="py-16 bg-slate-800/30">
-        <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-3 gap-8 items-center">
-          <motion.div
-            className="col-span-1 flex justify-center"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-          >
-            <img src="/images/principal.jpg" alt="Principal" className="rounded-2xl w-60 h-72 object-cover shadow-lg" />
-          </motion.div>
-          <motion.div
-            className="col-span-2"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <h2 className="text-3xl font-bold mb-4">Principal’s Message</h2>
-            <p className="text-white/80 mb-3 text-sm sm:text-base">
-              “At MHA, we believe education is more than academics — it’s the cultivation of heart and purpose.
-              Every student is created for greatness, and we walk with them to discover it.”
-            </p>
-            <p className="text-white/70 text-sm">– Rev. Daniel Kim, Principal</p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Timeline */}
-      <Timeline />
-
-      {/* Gallery */}
-      <section className="py-16 bg-slate-900/50">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-8 text-center">Campus Moments</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <img src="/images/campus1.jpg" alt="campus" className="rounded-lg hover:scale-105 transition" />
-            <img src="/images/campus2.jpg" alt="campus" className="rounded-lg hover:scale-105 transition" />
-            <img src="/images/campus3.jpg" alt="campus" className="rounded-lg hover:scale-105 transition" />
-            <img src="/images/campus4.jpg" alt="campus" className="rounded-lg hover:scale-105 transition" />
-          </div>
-        </div>
-      </section>
-    </main>
+      </ContentSection>
+    </div>
   );
 }

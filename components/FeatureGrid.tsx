@@ -1,35 +1,54 @@
-// FILE: components/FeatureGrid.tsx
 'use client'
-import React from 'react';
+import { motion } from 'framer-motion'
+import Link from 'next/link'
 
-type Feature = { title: string; desc: string; href?: string; icon: React.ReactNode; delay?: number };
-
-const features: Feature[] = [
-  { title: 'Admissions', desc: 'Apply & requirements for new students.', href: '/admissions', icon: (<svg className="w-8 h-8" viewBox="0 0 24 24" fill="none"><path d="M12 2v20" stroke="currentColor" strokeWidth="1.5"/><path d="M4 8h16" stroke="currentColor" strokeWidth="1.5"/></svg>) },
-  { title: 'Curriculum', desc: 'Our academic programs & activities.', href: '/curriculum', icon: (<svg className="w-8 h-8" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="1.5"/></svg>) },
-  { title: 'School News', desc: 'Latest announcements & gallery.', href: '/news', icon: (<svg className="w-8 h-8" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.5"/><path d="M8 12h8" stroke="currentColor" strokeWidth="1.5"/></svg>) },
-];
+const features = [
+  {
+    title: 'Holistic Curriculum',
+    desc: 'Balanced academics with spiritual formation for every student.',
+    icon: '💡',
+    link: '/curriculum', // link to curriculum page
+  },
+  {
+    title: 'Boarding & Care',
+    desc: 'Safe dormitory life with pastoral support and a nurturing environment.',
+    icon: '🏠',
+    link: '/dormitory', // link to dormitory info
+  },
+  {
+    title: 'Active Community',
+    desc: 'Clubs, sports, and mission activities that foster leadership and service.',
+    icon: '📅',
+    link: '/student-life', // link to community page
+  },
+]
 
 export default function FeatureGrid() {
   return (
-    <section className="py-12 bg-transparent">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-2xl font-bold text-white mb-6">Explore</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {features.map((f, i) => (
-            <a key={f.title} href={f.href} className="group block bg-white/6 glass rounded-2xl p-6 hover:shadow-xl transform hover:-translate-y-2 transition">
-              <div className="flex items-center gap-4">
-                <div className="p-3 rounded-lg bg-white/10 text-white">{f.icon}</div>
-                <div>
-                  <h3 className="text-lg font-semibold text-white">{f.title}</h3>
-                  <p className="text-sm text-white/80 mt-1">{f.desc}</p>
-                </div>
-              </div>
-              <div className="mt-4 text-sm text-white/70 group-hover:text-white transition">Learn more →</div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      {features.map((f, i) => (
+        <motion.article
+          key={f.title}
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: i * 0.08, duration: 0.5 }}
+          className="glass rounded-2xl p-6 flex flex-col gap-4 hover:scale-[1.02] transition"
+        >
+          <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-white/6">
+            <div className="text-sky-300 text-xl">{f.icon}</div>
+          </div>
+          <h3 className="text-lg font-semibold">{f.title}</h3>
+          <p className="text-white/75 text-sm leading-relaxed">{f.desc}</p>
+          <div className="mt-auto">
+            <Link
+              href={f.link}
+              className="text-sky-300 text-sm hover:underline hover:text-sky-200 transition"
+            >
+              Learn more →
+            </Link>
+          </div>
+        </motion.article>
+      ))}
+    </div>
+  )
 }

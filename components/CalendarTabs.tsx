@@ -1,12 +1,30 @@
-// FILE: components/CalendarTabs.tsx
 'use client'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { semesters } from '../lib/calendarData'
+import { semester as defaultSemesters } from '../lib/calendarData'
 import SemesterGallery from './SemesterGallery'
+import Image from 'next/image'
 
-export default function CalendarTabsWrapper() {
-  // allow caller to pass semesters, but fallback to lib
+interface SemesterEvent {
+  id: string
+  title: string
+  date: string
+  description?: string
+}
+
+interface Semester {
+  id: string
+  name: string
+  image?: string
+  pdf?: string
+  events: SemesterEvent[]
+}
+
+export default function CalendarTabsWrapper({
+  semesters = defaultSemesters, // ✅ allows passing semesters OR defaults to imported ones
+}: {
+  semesters?: Semester[]
+}) {
   const sems = semesters
   const [activeId, setActiveId] = useState(sems[0]?.id ?? null)
   const active = sems.find((s) => s.id === activeId) ?? sems[0]
@@ -21,11 +39,15 @@ export default function CalendarTabsWrapper() {
               key={s.id}
               onClick={() => setActiveId(s.id)}
               className={`px-4 py-2 rounded-md min-w-[150px] text-left transition ${
-                isActive ? 'bg-white text-slate-900 font-semibold' : 'text-white/80 hover:bg-white/6'
-              }`}
+                isActive
+                  ? 'bg-white text-slate-900 font-semibold'
+                  : 'text-white/80 hover:bg-white/6'
+              }}`}
             >
               <div className="text-sm">{s.name}</div>
-              <div className="text-xs text-white/60 mt-0">{s.events[0]?.date ?? ''}</div>
+              <div className="text-xs text-white/60 mt-0">
+                {s.events[0]?.date ?? ''}
+              </div>
             </button>
           )
         })}
@@ -38,9 +60,13 @@ export default function CalendarTabsWrapper() {
         transition={{ duration: 0.45, ease: 'easeOut' }}
       >
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="md:col-span-2 bg-white/6 p-6 rounded-lg">
-            <h3 className="text-2xl font-semibold mb-2 text-white">{active.name}</h3>
-            <p className="text-white/80 mb-4">Downloadable calendar and important dates for the semester.</p>
+          <div className="md:col-span-2 glass p-6 rounded-lg">
+            <h3 className="text-2xl font-semibold mb-2 text-white">
+              {active.name}
+            </h3>
+            <p className="text-white/80 mb-4">
+              Downloadable calendar and important dates for the semester.
+            </p>
 
             <ul className="space-y-3">
               {active.events.map((ev) => (
@@ -49,7 +75,9 @@ export default function CalendarTabsWrapper() {
                     <div>
                       <div className="font-semibold text-white">{ev.title}</div>
                       <div className="text-xs text-white/60">{ev.date}</div>
-                      <p className="text-white/70 mt-1 text-sm">{ev.description}</p>
+                      <p className="text-white/70 mt-1 text-sm">
+                        {ev.description}
+                      </p>
                     </div>
                   </div>
                 </li>
@@ -57,25 +85,40 @@ export default function CalendarTabsWrapper() {
             </ul>
           </div>
 
-          <div className="bg-white/4 p-4 rounded-lg">
+          <div className="glass p-4 rounded-lg">
             <div className="relative w-full h-44 mb-3 rounded overflow-hidden">
-              <img src={active.image} alt={active.name} className="w-full h-full object-cover" />
+              {active.image && (
+                <Image
+                  src={active.image}
+                  alt={active.name}
+                  fill
+                  className="object-cover"
+                />
+              )}
             </div>
 
             <div className="flex flex-col gap-2">
               {active.pdf && (
-                <a href={active.pdf} className="px-4 py-2 bg-white/10 rounded text-white/90">
+                <a
+                  href={active.pdf}
+                  className="px-4 py-2 bg-white/10 rounded text-white/90"
+                >
                   Download PDF
                 </a>
               )}
               <a
-                href={`data:text/calendar;charset=utf8,${encodeURIComponent(generateICS(active))}`}
+                href={`data:text/calendar;charset=utf8,${encodeURIComponent(
+                  generateICS(active)
+                )}`}
                 download={`${active.id}_calendar.ics`}
                 className="px-4 py-2 bg-white/6 rounded text-white/80"
               >
                 Export .ics
               </a>
-              <a href="#gallery" className="px-4 py-2 border border-white/6 rounded text-white/70 hover:bg-white/6 transition">
+              <a
+                href="#gallery"
+                className="px-4 py-2 border border-white/6 rounded text-white/70 hover:bg-white/6 transition"
+              >
                 View Gallery
               </a>
             </div>
@@ -91,7 +134,7 @@ export default function CalendarTabsWrapper() {
 }
 
 // small ICS helper
-function generateICS(sem: any) {
+function generateICS(sem: Semester) {
   const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//MHA School//Academic Calendar//EN']
   for (const ev of sem.events) {
     const date = ev.date.replace(/-/g, '')

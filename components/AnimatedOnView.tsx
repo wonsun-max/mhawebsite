@@ -22,7 +22,7 @@ export default function AnimatedOnView({
   threshold = 0.2,
   variants,
 }: Props) {
-  const ref = useRef<HTMLElement | null>(null)
+  const ref = useRef<HTMLDivElement>(null)
   const controls = useAnimation()
 
   useEffect(() => {
@@ -48,7 +48,7 @@ export default function AnimatedOnView({
 
   return (
     <motion.div
-      ref={ref as any}
+      ref={ref}
       initial="hidden"
       animate={controls}
       variants={variants ?? defaultVariants}

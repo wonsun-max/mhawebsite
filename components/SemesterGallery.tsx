@@ -7,7 +7,7 @@ import type { Semester } from '../lib/calendarData'
 
 export default function SemesterGallery({ semester }: { semester: Semester }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
-  const gallery = semester.gallery ?? [semester.image]
+  const gallery = (semester.gallery ?? (semester.image ? [semester.image] : [])).filter(Boolean) as string[]
 
   return (
     <section className="mt-6">
