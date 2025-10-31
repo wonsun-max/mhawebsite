@@ -2,15 +2,18 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ['lh3.googleusercontent.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  i18n: {
-    locales: ['ko', 'en'],
-    defaultLocale: 'ko',
-  },
+  // Removed: typescript: {
+  //   ignoreBuildErrors: true,
+  // },
   /* config options here */
 };
 
