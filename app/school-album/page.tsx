@@ -65,15 +65,19 @@ export default function SchoolAlbumPage() {
                         <p className="text-gray-400 text-lg">아직 업로드된 앨범이 없습니다</p>
                     </motion.div>
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                         {albums.map((album, idx) => (
                             <Link key={album.id} href={`/school-album/${album.id}`}>
                                 <motion.div
-                                    initial={{ opacity: 0, y: 20 }}
+                                    initial={{ opacity: 0, y: 30 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: idx * 0.1 }}
-                                    whileHover={{ y: -8 }}
-                                    className="group relative bg-gray-800 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-white/10"
+                                    transition={{
+                                        delay: idx * 0.1,
+                                        duration: 0.5,
+                                        ease: "easeOut"
+                                    }}
+                                    whileHover={{ y: -10 }}
+                                    className="group relative bg-[#112240]/50 backdrop-blur-md rounded-[2rem] overflow-hidden shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 border border-white/5 hover:border-blue-500/30"
                                 >
                                     {/* Cover Image */}
                                     <div className="relative aspect-[4/3] overflow-hidden">
@@ -81,38 +85,45 @@ export default function SchoolAlbumPage() {
                                             src={album.images[0]}
                                             alt={album.title}
                                             fill
-                                            className="object-cover group-hover:scale-110 transition-transform duration-500"
+                                            className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-[#0A1929] via-[#0A1929]/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
 
                                         {/* Image Count Badge */}
-                                        <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                                        <div className="absolute top-6 right-6 bg-black/40 backdrop-blur-xl border border-white/10 px-4 py-2 rounded-2xl flex items-center gap-2 group-hover:bg-blue-600/40 group-hover:border-blue-400/30 transition-all duration-300">
                                             <ImageIcon className="w-4 h-4 text-white" />
-                                            <span className="text-white text-sm font-medium">{album.images.length}</span>
+                                            <span className="text-white text-sm font-bold tracking-wider">{album.images.length}</span>
                                         </div>
                                     </div>
 
                                     {/* Content */}
-                                    <div className="p-6">
-                                        <h3 className="text-xl font-bold text-white mb-2 line-clamp-2 group-hover:text-blue-400 transition-colors">
+                                    <div className="p-8">
+                                        <h3 className="text-2xl font-bold text-white mb-3 line-clamp-1 group-hover:text-blue-400 transition-colors duration-300">
                                             {album.title}
                                         </h3>
                                         {album.description && (
-                                            <p className="text-gray-400 text-sm mb-4 line-clamp-2">
+                                            <p className="text-slate-400 text-sm mb-6 line-clamp-2 leading-relaxed font-light">
                                                 {album.description}
                                             </p>
                                         )}
-                                        <div className="flex items-center justify-between text-xs text-gray-500">
-                                            <span className="flex items-center gap-1">
-                                                <Calendar className="w-3.5 h-3.5" />
-                                                {new Date(album.createdAt).toLocaleDateString('ko-KR')}
+                                        <div className="flex items-center justify-between pt-6 border-t border-white/5">
+                                            <span className="flex items-center gap-2 text-xs text-slate-500 font-medium">
+                                                <Calendar className="w-3.5 h-3.5 text-blue-500" />
+                                                {new Date(album.createdAt).toLocaleDateString('ko-KR', {
+                                                    year: 'numeric',
+                                                    month: 'long',
+                                                    day: 'numeric'
+                                                })}
                                             </span>
-                                            <span>{album.author.koreanName || album.author.name || 'Admin'}</span>
+                                            <div className="flex items-center gap-2 text-xs text-slate-500 bg-white/5 px-3 py-1 rounded-full border border-white/5">
+                                                <User className="w-3 h-3 text-blue-400" />
+                                                <span>{album.author.koreanName || album.author.name || 'Admin'}</span>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    {/* Hover Effect Border */}
-                                    <div className="absolute inset-0 border-2 border-blue-500/0 group-hover:border-blue-500/50 rounded-2xl transition-colors pointer-events-none" />
+                                    {/* Subtle Glow Effect on Hover */}
+                                    <div className="absolute -inset-px bg-gradient-to-br from-blue-500/0 via-blue-500/0 to-blue-500/0 group-hover:from-blue-500/5 group-hover:to-blue-500/10 pointer-events-none transition-all duration-500" />
                                 </motion.div>
                             </Link>
                         ))}
