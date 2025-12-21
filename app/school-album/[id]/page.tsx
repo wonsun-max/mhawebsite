@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Calendar, User, ArrowLeft } from 'lucide-react';
 import ContentPageLayout from '@/components/ContentPageLayout';
+import { newsSubNav } from '@/lib/subNavConfig';
 
 interface Album {
     id: string;
