@@ -271,8 +271,76 @@ export const dormitory = {
 };
 
 export const historyEvents = [
-  { year: "1980", title: "학교 설립", desc: "MHA는 양질의 교육을 제공하기 위한 비전으로 설립되었습니다." },
-  { year: "1995", title: "새 캠퍼스 개교", desc: "증가하는 학생 수를 수용하기 위해 더 큰 캠퍼스로 이전했습니다." },
-  { year: "2010", title: "인증 획득", desc: "학문적 우수성에 대한 국가 인증을 받았습니다." },
-  { year: "2020", title: "온라인 학습 플랫폼 출시", desc: "팬데믹 기간 동안 강력한 온라인 학습 시스템을 도입했습니다." },
+  {
+    year: "2022",
+    title: "제10대 김홍태 교장 취임",
+    desc: "02.01. 제10대 김홍태 교장 취임하다.",
+    icon: 'Calendar' as const,
+  },
+  {
+    year: "2016",
+    title: "외부생활관 완공 및 입사",
+    desc: "04.05. 외부생활관 완공예배를 드리고 입사하다.",
+    icon: 'Calendar' as const,
+  },
+  {
+    year: "2015",
+    title: "제9대 곽인환 교장 취임",
+    desc: "08.18. 제9대 곽인환 교장 취임하다.",
+    icon: 'Calendar' as const,
+  },
+  {
+    year: "2011",
+    title: "교육 행정동, 생활관 건축 완공",
+    desc: "09.06. 교육 행정동, 생활관 건축 완공하다.",
+    icon: 'Calendar' as const,
+  },
+  {
+    year: "2006",
+    title: "재단이사회 구성 및 교장 취임",
+    desc: "01.14. 명성교회에서 재단이사회를 구성하고 이사장에 김삼환 목사 취임하다. 제6대 교장으로 차훈 목사가 취임하다.",
+    icon: 'Calendar' as const,
+  },
+  {
+    year: "2003",
+    title: "제1회 졸업식 및 수료식",
+    desc: "01.30. 제1회 졸업식 및 수료식 (12학년 졸업 3명, 유치원수료 2명, 초등수료 5명, 중등수료 4명)",
+    icon: 'Calendar' as const,
+  },
+  {
+    year: "2000",
+    title: "고등학교 및 초등학교 인가, 교명 변경",
+    desc: "06.15. DECS(필리핀 교육부)로부터 고등학교인가 받다. 02.14. 교명을 마닐라한국아카데미(Manila Hankuk Academy)로 변경하다. 01.17. DECS(필리핀 교육부)로부터 초등학교인가 받다.",
+    icon: 'Calendar' as const,
+  },
+  {
+    year: "1998",
+    title: "신축 교사 이전 및 준공",
+    desc: "10.07. 신축 교사로 이전하다. 09.29. 안티폴로 신축 교사 준공예배를 드리다.",
+    icon: 'Calendar' as const,
+  },
+  {
+    year: "1997",
+    title: "제4대 교장 김은호 목사 취임",
+    desc: "09.15. 제4대 교장 김은호 목사가 취임하다.",
+    icon: 'Calendar' as const,
+  },
+  {
+    year: "1995",
+    title: "중학교 과정 개설",
+    desc: "05.15. 중학교 과정 개설하다.",
+    icon: 'Calendar' as const,
+  },
+  {
+    year: "1994",
+    title: "학교 등록 및 개교",
+    desc: "06.24. 필리핀정부에 SEC(Security and Exchange Commission)을 Hankuk Educational Foundation Inc.로 등록 신청하고, 교명을 한국 아카데미로 정하다. 06.15. 개교예배 및 입학식 (학생:77명, 교사:26명-필리핀교사 6명 포함)초대교장 김활영 목사 취임하다. 04.00. 본국 정부에 학교 설립을 대사관을 통하여 재외국민 교육기관으로 등록하다. 03.30. 학교 임시건물을 New Manila에 임대하여 입주하다.",
+    icon: 'Calendar' as const,
+  },
+  {
+    year: "1993",
+    title: "학교 설립 준비",
+    desc: "12.00. 마닐라에서 학교 설립 이사회를 재편하다. 학생 모집 및 교사 선발하다.",
+    icon: 'Calendar' as const,
+  },
 ];

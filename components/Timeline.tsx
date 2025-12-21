@@ -1,42 +1,57 @@
 'use client'
-import React from 'react'
-import AnimatedOnView from './AnimatedOnView'
-import { motion } from 'framer-motion' 
+import { motion } from 'framer-motion'
+import { Building, GraduationCap, Star, Award, Zap, Globe, Calendar } from 'lucide-react'
+
+const iconMap = {
+  Building: <Building className="w-6 h-6 text-white" />,
+  GraduationCap: <GraduationCap className="w-6 h-6 text-white" />,
+  Star: <Star className="w-6 h-6 text-white" />,
+  Award: <Award className="w-6 h-6 text-white" />,
+  Zap: <Zap className="w-6 h-6 text-white" />,
+  Globe: <Globe className="w-6 h-6 text-white" />,
+  Calendar: <Calendar className="w-6 h-6 text-white" />,
+}
 
 interface TimelineEvent {
-  year: string;
-  title: string;
-  desc?: string;
+  year: string
+  title: string
+  desc?: string
+  icon: keyof typeof iconMap
 }
 
 interface TimelineProps {
-  events: TimelineEvent[];
+  events: TimelineEvent[]
 }
 
 export default function Timeline({ events }: TimelineProps) {
   return (
-    <section className="py-16"> 
-      <div className="max-w-6xl mx-auto px-6"> 
-        <motion.h2 
-          className="text-3xl font-bold text-white mb-8 text-center" 
-          initial={{ opacity: 0, y: 20 }}
+    <div className="relative">
+      <div className="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-gray-200" />
+      {events.map((event, index) => (
+        <motion.div
+          key={index}
+          className="relative mb-12"
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: index * 0.2 }}
         >
-          학교 연혁
-        </motion.h2>
-        <div className="glass p-6 rounded-lg"> 
-          <div className="relative border-l border-white/10 ml-4">
-            {events.map((ev) => (
-              <AnimatedOnView key={ev.year} className="ml-6 mb-10 relative">
-                <div className="absolute -left-[34px] top-2 w-5 h-5 bg-blue-500 rounded-full border-2 border-white" />
-                <h3 className="text-xl font-semibold text-white">{ev.year} · {ev.title}</h3>
-                <p className="text-white/80 mt-2">{ev.desc}</p>
-              </AnimatedOnView>
-            ))}
+          <div className={`flex items-center ${index % 2 === 0 ? 'flex-row-reverse' : ''}`}>
+            <div className="w-1/2 px-4">
+              <div className={`text-lg font-bold ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>{event.year}</div>
+            </div>
+            <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center z-10">
+              {iconMap[event.icon]}
+            </div>
+            <div className="w-1/2 px-4">
+              <div className={`p-6 bg-white rounded-lg shadow-lg ${index % 2 === 0 ? 'text-left' : 'text-right'}`}>
+                <h3 className="text-xl font-bold text-gray-800 mb-2">{event.title}</h3>
+                <p className="text-gray-600">{event.desc}</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </motion.div>
+      ))}
+    </div>
   )
 }

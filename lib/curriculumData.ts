@@ -206,6 +206,17 @@ export const secondary = {
       ],
     },
   ],
+  dailyScheduleExample: [
+    { period: 1, time: '08:30 - 09:15', subject: 'Chapel' },
+    { period: 2, time: '09:20 - 10:05', subject: 'Korean' },
+    { period: 3, time: '10:10 - 10:55', subject: 'English' },
+    { period: 4, time: '11:00 - 11:45', subject: 'Mathematics' },
+    { period: 'Lunch', time: '11:45 - 12:45', subject: 'Lunch Break' },
+    { period: 5, time: '12:45 - 13:30', subject: 'Science' },
+    { period: 6, time: '13:35 - 14:20', subject: 'Social Studies' },
+    { period: 7, time: '14:25 - 15:10', subject: 'Elective' },
+    { period: 8, time: '15:15 - 16:00', subject: 'Club Activity' },
+  ],
 };
 export const activities = [
   {

@@ -1,8 +1,6 @@
 'use client'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { semester as defaultSemesters } from '../lib/calendarData'
-import SemesterGallery from './SemesterGallery'
 import Image from 'next/image'
 
 interface SemesterEvent {
@@ -21,7 +19,7 @@ interface Semester {
 }
 
 export default function CalendarTabsWrapper({
-  semesters = defaultSemesters, // ✅ allows passing semesters OR defaults to imported ones
+  semesters = [], // Default to empty array, expects data from parent
 }: {
   semesters?: Semester[]
 }) {
@@ -38,11 +36,10 @@ export default function CalendarTabsWrapper({
             <button
               key={s.id}
               onClick={() => setActiveId(s.id)}
-              className={`px-4 py-2 rounded-md min-w-[150px] text-left transition ${
-                isActive
-                  ? 'bg-white text-slate-900 font-semibold'
-                  : 'text-white/80 hover:bg-white/6'
-              }}`}
+              className={`px-4 py-2 rounded-md min-w-[150px] text-left transition ${isActive
+                ? 'bg-white text-slate-900 font-semibold'
+                : 'text-white/80 hover:bg-white/6'
+                }}`}
             >
               <div className="text-sm">{s.name}</div>
               <div className="text-xs text-white/60 mt-0">
@@ -115,18 +112,8 @@ export default function CalendarTabsWrapper({
               >
                 Export .ics
               </a>
-              <a
-                href="#gallery"
-                className="px-4 py-2 border border-white/6 rounded text-white/70 hover:bg-white/6 transition"
-              >
-                View Gallery
-              </a>
             </div>
           </div>
-        </div>
-
-        <div id="gallery" className="mt-6">
-          <SemesterGallery semester={active} />
         </div>
       </motion.div>
     </div>

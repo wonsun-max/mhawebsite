@@ -4,20 +4,57 @@
 @import "tailwindcss/utilities.css" layer(utilities);
 
 /* ---------- BASE STYLES ---------- */
-@layer base {
-  html,
-  body {
-    height: 100%;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Cool & Comfortable Palette */
+  --foreground-rgb: 15, 23, 42; /* Slate 900 */
+  --background-start-rgb: 248, 250, 252; /* Slate 50 */
+  --background-end-rgb: 241, 245, 249; /* Slate 100 */
+
+  /* Primary - Cool Blue/Teal */
+  --primary-rgb: 14, 165, 233; /* Sky 500 */
+  --primary-dark-rgb: 2, 132, 199; /* Sky 600 */
+
+  /* Secondary - Soft Slate */
+  --secondary-rgb: 100, 116, 139; /* Slate 500 */
+  
+  /* Accent - Warm Gold (Subtle) */
+  --accent-rgb: 234, 179, 8; /* Yellow 500 */
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: transparent;
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10 shadow-lg;
   }
-  body {
-    margin: 0;
-    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
-    background: linear-gradient(180deg, #0f172a 0%, #0b1220 100%);
-    color: white;
+  
+  .glass-light {
+    @apply bg-white/70 backdrop-blur-lg border border-white/20 shadow-lg;
+  }
+  
+  .glass-dark {
+    @apply bg-slate-900/70 backdrop-blur-lg border border-white/10 shadow-lg;
+  }
+
+
+  .text-balance {
+    text-wrap: balance;
   }
 }
 
-/* ---------- UTILITIES ---------- */
-@layer utilities {
-  /* All custom utilities have been removed as they are no longer in use. */
+/* Custom animations for 자유 게시판 button */
+@keyframes gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }

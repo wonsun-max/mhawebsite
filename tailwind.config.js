@@ -1,4 +1,3 @@
-// FILE: tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -8,11 +7,35 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-inter)', 'sans-serif'],
+        serif: ['var(--font-playfair)', 'serif'],
+      },
       colors: {
-        'navy-blue': '#001F3F', // A deep, academic navy blue
-        'light-gray': '#F5F5F5', // A soft, light gray
-        'white': '#FFFFFF', // Pure white
-        // You can add more shades if needed, e.g., 'navy-blue-light': '#1A3A5F'
+        primary: {
+          DEFAULT: 'rgb(var(--primary-rgb) / <alpha-value>)',
+          dark: 'rgb(var(--primary-dark-rgb) / <alpha-value>)',
+        },
+        secondary: 'rgb(var(--secondary-rgb) / <alpha-value>)',
+        accent: 'rgb(var(--accent-rgb) / <alpha-value>)',
+        slate: {
+          50: '#f8fafc',
+          100: '#f1f5f9',
+          200: '#e2e8f0',
+          300: '#cbd5e1',
+          400: '#94a3b8',
+          500: '#64748b',
+          600: '#475569',
+          700: '#334155',
+          800: '#1e293b',
+          900: '#0f172a',
+          950: '#020617',
+        },
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic':
+          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
     },
   },
