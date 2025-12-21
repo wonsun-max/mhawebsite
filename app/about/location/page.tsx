@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { MapPin, Phone, Mail, MessageCircle } from 'lucide-react'
 import ContentPageLayout from '@/components/ContentPageLayout'
 import { aboutSubNav } from '@/lib/subNavConfig'
+import GoogleMap from '@/components/features/GoogleMap'
 
 const location = {
   address: 'B3&4 Lot 1 C. Lawis St. Brgy San Luis, Antipolo City. 1870',
@@ -13,10 +14,6 @@ const location = {
   email: 'hankukac@hanmail.net',
   coordinates: '14.6042,121.1793',
 };
-
-// Google Maps embed URL (using standard iframe embed)
-// Searching by the specific address provided by the user
-const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent("B3&4 Lot 1 C. Lawis St. Brgy San Luis, Antipolo City")}&t=&z=17&ie=UTF8&iwloc=&output=embed`;
 
 export default function LocationPage() {
   return (
@@ -103,20 +100,18 @@ export default function LocationPage() {
             </div>
           </motion.div>
 
+
           {/* Map */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="h-[600px] rounded-2xl overflow-hidden shadow-2xl"
+            className="h-[600px] flex-1"
           >
-            <iframe
-              title="MHA Campus Map"
-              src={mapSrc}
-              className="w-full h-full border-0"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
+            <GoogleMap
+              lat={parseFloat(location.coordinates.split(',')[0])}
+              lng={parseFloat(location.coordinates.split(',')[1])}
             />
           </motion.div>
         </div>
