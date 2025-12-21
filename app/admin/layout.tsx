@@ -32,12 +32,12 @@ export default function AdminLayout({
       return;
     }
 
-    if (session.user.role !== "ADMIN") {
+    if (session?.user?.role !== "ADMIN") {
       router.push("/");
     }
   }, [session, status, router]);
 
-  if (status === "loading" || !session || session.user.role !== "ADMIN") {
+  if (status === "loading" || !session || session?.user?.role !== "ADMIN") {
     return (
       <div className="min-h-screen bg-gradient-to-br from-[#0A1929] via-[#0F2847] to-[#0A1929] flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
@@ -95,8 +95,8 @@ export default function AdminLayout({
                     <Link
                       href={item.href}
                       className={`group relative flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${isActive
-                          ? 'bg-white/10 shadow-lg shadow-[#D4AF37]/10'
-                          : 'hover:bg-white/5'
+                        ? 'bg-white/10 shadow-lg shadow-[#D4AF37]/10'
+                        : 'hover:bg-white/5'
                         }`}
                     >
                       {/* Active indicator */}
@@ -106,8 +106,8 @@ export default function AdminLayout({
 
                       {/* Icon with gradient background */}
                       <div className={`relative p-2 rounded-lg transition-all duration-300 ${isActive
-                          ? `bg-gradient-to-br ${item.gradient}`
-                          : 'bg-white/5 group-hover:bg-white/10'
+                        ? `bg-gradient-to-br ${item.gradient}`
+                        : 'bg-white/5 group-hover:bg-white/10'
                         }`}>
                         <item.icon className={`w-5 h-5 transition-colors ${isActive ? 'text-white' : 'text-gray-300 group-hover:text-white'
                           }`} />
