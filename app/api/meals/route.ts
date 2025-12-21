@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
 
     await prisma.$transaction(upsertPromises);
 
-    return ApiResponse.success({ count: meals.length }, "급식 정보가 저장되었습니다.");
+    return ApiResponse.success({ count: meals.length, message: "급식 정보가 저장되었습니다." });
   } catch (error) {
     console.error("Error saving meals:", error);
     return ApiResponse.serverError("급식 정보를 저장하는 중 오류가 발생했습니다.");

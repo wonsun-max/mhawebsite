@@ -5,13 +5,15 @@ import { prisma } from "@/lib/prisma";
 import { ApiResponse } from "@/lib/api-response";
 import { canModifyContent } from "@/lib/rbac";
 
+export const dynamic = "force-dynamic";
+
 // GET /api/posts/[id] - Get single post
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = await params;
+    const { id } = params;
     const session = await getServerSession(authOptions);
     const userId = session?.user?.id;
 
@@ -98,10 +100,10 @@ export async function GET(
 // PUT /api/posts/[id] - Update post
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = await params;
+    const { id } = params;
     const session = await getServerSession(authOptions);
 
     if (!session?.user) {
@@ -173,10 +175,10 @@ export async function PUT(
 // DELETE /api/posts/[id] - Delete post
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = await params;
+    const { id } = params;
     const session = await getServerSession(authOptions);
 
     if (!session?.user) {

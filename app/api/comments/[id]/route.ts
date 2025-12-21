@@ -5,10 +5,12 @@ import { prisma } from "@/lib/prisma";
 import { ApiResponse } from "@/lib/api-response";
 import { canModifyContent } from "@/lib/rbac";
 
+export const dynamic = "force-dynamic";
+
 // PUT /api/comments/[id] - Update comment
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -17,7 +19,7 @@ export async function PUT(
       return ApiResponse.unauthorized("You must be logged in to update a comment");
     }
 
-    const { id } = await params;
+    const { id } = params;
     const comment = await prisma.comment.findUnique({
       where: { id },
     });
@@ -62,7 +64,7 @@ export async function PUT(
 // DELETE /api/comments/[id] - Delete comment
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -71,7 +73,7 @@ export async function DELETE(
       return ApiResponse.unauthorized("You must be logged in to delete a comment");
     }
 
-    const { id } = await params;
+    const { id } = params;
     const comment = await prisma.comment.findUnique({
       where: { id },
     });

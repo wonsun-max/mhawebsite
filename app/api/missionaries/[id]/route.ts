@@ -1,17 +1,12 @@
-import { NextRequest } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { ApiResponse } from "@/lib/api-response";
-import { isAdmin } from "@/lib/rbac";
+export const dynamic = "force-dynamic";
 
 // GET /api/missionaries/[id] - Get single missionary
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = await params;
+    const { id } = params;
     const missionary = await prisma.mKMissionary.findUnique({
       where: { id },
     });
@@ -30,10 +25,10 @@ export async function GET(
 // PUT /api/missionaries/[id] - Update missionary (Admin only)
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = await params;
+    const { id } = params;
     const session = await getServerSession(authOptions);
 
     if (!isAdmin(session)) {
@@ -102,10 +97,10 @@ export async function PUT(
 // DELETE /api/missionaries/[id] - Delete missionary (Admin only)
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = await params;
+    const { id } = params;
     const session = await getServerSession(authOptions);
 
     if (!isAdmin(session)) {

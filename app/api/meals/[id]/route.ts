@@ -5,13 +5,15 @@ import { prisma } from "@/lib/prisma";
 import { ApiResponse } from "@/lib/api-response";
 import { isAdmin } from "@/lib/rbac";
 
+export const dynamic = "force-dynamic";
+
 // GET /api/meals/[id] - Get single meal plan
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = await params;
+    const { id } = params;
     const meal = await prisma.mealPlan.findUnique({
       where: { id },
     });
@@ -30,7 +32,7 @@ export async function GET(
 // PUT /api/meals/[id] - Update meal plan (Admin only)
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -39,7 +41,7 @@ export async function PUT(
       return ApiResponse.forbidden("Only admins can update meal plans");
     }
 
-    const { id } = await params;
+    const { id } = params;
     const meal = await prisma.mealPlan.findUnique({
       where: { id },
     });
@@ -49,14 +51,13 @@ export async function PUT(
     }
 
     const body = await request.json();
-    const { breakfast, lunch, dinner, snack } = body;
+    const { breakfast, lunch, snack } = body;
 
     const updatedMeal = await prisma.mealPlan.update({
       where: { id },
       data: {
         breakfast,
         lunch,
-        dinner,
         snack,
       },
     });
@@ -71,7 +72,7 @@ export async function PUT(
 // DELETE /api/meals/[id] - Delete meal plan (Admin only)
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -80,7 +81,7 @@ export async function DELETE(
       return ApiResponse.forbidden("Only admins can delete meal plans");
     }
 
-    const { id } = await params;
+    const { id } = params;
     const meal = await prisma.mealPlan.findUnique({
       where: { id },
     });

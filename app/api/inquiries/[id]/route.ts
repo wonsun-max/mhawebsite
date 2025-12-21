@@ -4,6 +4,8 @@ import { ApiResponse } from "@/lib/api-response";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 
+export const dynamic = "force-dynamic";
+
 // PATCH /api/inquiries/[id] - Update inquiry status
 export async function PATCH(
     request: NextRequest,

@@ -4,13 +4,15 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { sendApprovalEmail } from "@/lib/email";
 
+export const dynamic = "force-dynamic";
+
 // PATCH /api/admin/users/[id]/approve - Approve/reject user or change role (Admin only)
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = await params;
+    const { id } = params;
     const session = await getServerSession(authOptions);
 
     if (!session?.user) {

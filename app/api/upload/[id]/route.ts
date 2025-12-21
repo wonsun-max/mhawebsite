@@ -7,13 +7,15 @@ import { isAdmin } from "@/lib/rbac";
 import { unlink } from "fs/promises";
 import path from "path";
 
+export const dynamic = "force-dynamic";
+
 // DELETE /api/upload/[id] - Delete file
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = await params;
+    const { id } = params;
     const session = await getServerSession(authOptions);
 
     if (!isAdmin(session)) {

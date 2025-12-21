@@ -5,13 +5,15 @@ import { prisma } from "@/lib/prisma";
 import { ApiResponse } from "@/lib/api-response";
 import { isAdmin } from "@/lib/rbac";
 
+export const dynamic = "force-dynamic";
+
 // GET /api/calendar/[id] - Get single event
 export async function GET(
     request: NextRequest,
-    { params }: { params: Promise<{ id: string }> }
+    { params }: { params: { id: string } }
 ) {
     try {
-        const { id } = await params;
+        const { id } = params;
         const event = await prisma.calendarEvent.findUnique({
             where: { id },
         });
@@ -30,10 +32,10 @@ export async function GET(
 // PUT /api/calendar/[id] - Update event (Admin only)
 export async function PUT(
     request: NextRequest,
-    { params }: { params: Promise<{ id: string }> }
+    { params }: { params: { id: string } }
 ) {
     try {
-        const { id } = await params;
+        const { id } = params;
         const session = await getServerSession(authOptions);
 
         if (!isAdmin(session)) {
@@ -118,10 +120,10 @@ export async function PUT(
 // DELETE /api/calendar/[id] - Delete event (Admin only)
 export async function DELETE(
     request: NextRequest,
-    { params }: { params: Promise<{ id: string }> }
+    { params }: { params: { id: string } }
 ) {
     try {
-        const { id } = await params;
+        const { id } = params;
         const session = await getServerSession(authOptions);
 
         if (!isAdmin(session)) {
