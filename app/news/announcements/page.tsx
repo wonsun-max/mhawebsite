@@ -5,7 +5,6 @@ import ContentPageLayout from '@/components/ContentPageLayout';
 import { motion } from 'framer-motion';
 import { Calendar, Pin, User, ArrowRight, Search, Loader2, Megaphone, FileText } from 'lucide-react';
 import Link from 'next/link';
-import { useDebounce } from '@/hooks/useDebounce';
 import { newsSubNav } from '@/lib/subNavConfig';
 
 interface Announcement {

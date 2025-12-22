@@ -174,8 +174,8 @@ export default function ForgotPasswordPage() {
                             <div
                                 key={s}
                                 className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${i <= currentStepIndex
-                                        ? "bg-blue-500 text-white shadow-lg shadow-blue-500/30"
-                                        : "bg-gray-800 text-gray-500 border border-white/10"
+                                    ? "bg-blue-500 text-white shadow-lg shadow-blue-500/30"
+                                    : "bg-gray-800 text-gray-500 border border-white/10"
                                     }`}
                             >
                                 {i + 1}
@@ -251,7 +251,21 @@ export default function ForgotPasswordPage() {
                                         <p className="text-white font-medium">{email}</p>
                                     </div>
 
-                                    <div className="space-y-2">
+                                    <div className="space-y-4">
+                                        <div className="flex justify-center gap-2">
+                                            {[0, 1, 2, 3, 4, 5].map((index) => (
+                                                <div
+                                                    key={index}
+                                                    className={`w-12 h-16 rounded-2xl border-2 flex items-center justify-center text-2xl font-bold transition-all duration-300 ${code[index]
+                                                            ? "border-[#D4AF37] bg-white/10 text-white shadow-[0_0_15px_rgba(212,175,55,0.2)]"
+                                                            : "border-white/10 bg-white/5 text-gray-600"
+                                                        }`}
+                                                >
+                                                    {code[index] || ""}
+                                                </div>
+                                            ))}
+                                        </div>
+
                                         <div className="relative">
                                             <input
                                                 type="text"
@@ -259,7 +273,8 @@ export default function ForgotPasswordPage() {
                                                 onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
                                                 placeholder="000000"
                                                 maxLength={6}
-                                                className="w-full px-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white text-center text-3xl tracking-[0.5em] font-mono placeholder-gray-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                                                className="absolute inset-0 opacity-0 cursor-default"
+                                                autoFocus
                                             />
                                         </div>
                                     </div>

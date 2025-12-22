@@ -36,7 +36,7 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <Link
-                href="https://www.facebook.com/manilahankukacademy"
+                href="https://www.youtube.com/watch?v=RrESvSRNpeo&list=RDRrESvSRNpeo&start_radio=1"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/10 hover:bg-[#D4AF37] flex items-center justify-center transition-all hover:scale-110"
@@ -44,7 +44,7 @@ export default function Footer() {
                 <Facebook size={20} />
               </Link>
               <Link
-                href="https://www.instagram.com/manilahankukacademy"
+                href="https://www.instagram.com/mha_official_2025/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/10 hover:bg-[#D4AF37] flex items-center justify-center transition-all hover:scale-110"
@@ -52,7 +52,7 @@ export default function Footer() {
                 <Instagram size={20} />
               </Link>
               <Link
-                href="https://www.youtube.com/@manilahankukacademy"
+                href="https://www.youtube.com/@MHA-Hanain"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/10 hover:bg-[#D4AF37] flex items-center justify-center transition-all hover:scale-110"
