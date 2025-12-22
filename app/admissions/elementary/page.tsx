@@ -104,23 +104,23 @@ export default function ElementaryAdmissionsPage() {
 
         {/* Application Downloads */}
         <motion.div
-          className="glass p-6 rounded-2xl flex items-center justify-between"
+          className="glass p-6 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <div className="flex items-center">
-            <FileDown className="w-10 h-10 text-blue-400 mr-4" />
+          <div className="flex flex-col sm:flex-row items-center text-center sm:text-left">
+            <FileDown className="w-12 h-12 text-blue-400 mb-4 sm:mb-0 sm:mr-4" />
             <div>
               <h4 className="text-xl font-bold text-white">입학원서 다운로드</h4>
               <p className="text-white/70 text-sm">한글파일 및 워드파일 제공</p>
             </div>
           </div>
-          <div className="flex gap-3">
-            <button className="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-white transition-colors">
+          <div className="flex gap-3 w-full sm:w-auto">
+            <button className="flex-1 sm:flex-none px-6 py-2.5 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-medium transition-colors">
               한글파일
             </button>
-            <button className="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-white transition-colors">
+            <button className="flex-1 sm:flex-none px-6 py-2.5 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-medium transition-colors">
               워드파일
             </button>
           </div>

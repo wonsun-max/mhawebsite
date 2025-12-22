@@ -90,9 +90,9 @@ export default function SchoolAlbumPage() {
                                         <div className="absolute inset-0 bg-gradient-to-t from-[#0A1929] via-[#0A1929]/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
 
                                         {/* Image Count Badge */}
-                                        <div className="absolute top-6 right-6 bg-black/40 backdrop-blur-xl border border-white/10 px-4 py-2 rounded-2xl flex items-center gap-2 group-hover:bg-blue-600/40 group-hover:border-blue-400/30 transition-all duration-300">
-                                            <ImageIcon className="w-4 h-4 text-white" />
-                                            <span className="text-white text-sm font-bold tracking-wider">{album.images.length}</span>
+                                        <div className="absolute top-4 right-4 bg-black/40 backdrop-blur-xl border border-white/10 px-3 py-1.5 sm:px-4 sm:py-2 rounded-2xl flex items-center gap-2 group-hover:bg-blue-600/40 group-hover:border-blue-400/30 transition-all duration-300">
+                                            <ImageIcon className="w-3.5 h-3.5 sm:w-4 h-4 text-white" />
+                                            <span className="text-white text-xs sm:text-sm font-bold tracking-wider">{album.images.length}</span>
                                         </div>
                                     </div>
 

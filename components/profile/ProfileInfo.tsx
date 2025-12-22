@@ -124,13 +124,15 @@ export default function ProfileInfo({ user }: ProfileInfoProps) {
                 </label>
             </div>
 
-            <div className="flex-1 text-center md:text-left w-full">
-                <div className="flex flex-col md:flex-row items-center gap-3 mb-2 justify-center md:justify-start">
-                    <h2 className="text-3xl font-bold text-white">{user.name}</h2>
+            <div className="flex-1 text-center md:text-left w-full overflow-hidden">
+                <div className="flex flex-col md:flex-row items-center gap-2 md:gap-3 mb-3 justify-center md:justify-start">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-white truncate max-w-full">{user.name}</h2>
                     {user.koreanName && (
-                        <span className="text-xl text-gray-400">({user.koreanName})</span>
+                        <span className="text-lg sm:text-xl text-gray-400">({user.koreanName})</span>
                     )}
-                    <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm font-semibold border border-blue-500/30">
+                </div>
+                <div className="flex justify-center md:justify-start mb-4">
+                    <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs sm:text-sm font-semibold border border-blue-500/30">
                         {user.role}
                     </span>
                 </div>

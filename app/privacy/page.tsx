@@ -11,7 +11,7 @@ export default function PrivacyPage() {
             heroImageUrl="/images/campus1.jpg"
             heroImageAlt="Privacy Policy"
         >
-            <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-8 md:p-12 text-gray-800">
+            <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-6 sm:p-8 md:p-12 text-gray-800">
                 <div className="flex items-center gap-3 mb-8 border-b pb-6 border-gray-200">
                     <Shield className="w-10 h-10 text-blue-600" />
                     <div>

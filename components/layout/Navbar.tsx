@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, ChevronRight, LogIn, User, Settings, LogOut } from 'lucide-react';
 import { useSession, signOut } from 'next-auth/react';
 import { useRouter, usePathname } from 'next/navigation';
 
@@ -55,6 +56,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const isHome = pathname === '/';
   const showLogoText = !isHome || isScrolled;
@@ -66,6 +68,20 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
+
+  // Prevent scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     if (status === 'authenticated' && !session?.user?.koreanName) {
@@ -79,17 +95,18 @@ export default function Navbar() {
       : 'bg-transparent border-b border-transparent py-5'
       }`}>
       <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative w-10 h-10 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+        <Link href="/" className="flex items-center gap-3 group z-50">
+          <div className="relative w-8 h-8 md:w-10 md:h-10 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
             <Image src="/images/logo.png" alt="logo" fill className="object-contain" />
           </div>
-          <span className={`text-white font-bold text-xl tracking-tight group-hover:text-[#D4AF37] transition-all duration-300 font-serif ${showLogoText ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2 pointer-events-none'
+          <span className={`text-white font-bold text-lg md:text-xl tracking-tight group-hover:text-[#D4AF37] transition-all duration-300 font-serif ${showLogoText ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2 pointer-events-none'
             }`}>
             Manila Hankuk Academy
           </span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-8">
+        {/* Desktop Navigation */}
+        <div className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
             <div
               key={link.name}
@@ -282,6 +299,111 @@ export default function Navbar() {
             )}
           </div>
         </div>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="lg:hidden z-50 p-2 text-white hover:bg-white/10 rounded-xl transition-colors"
+          aria-label="Toggle Menu"
+        >
+          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+
+        {/* Mobile Navigation Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, x: '100%' }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed inset-0 lg:hidden bg-[#0A1929] z-40 pt-24 px-6 pb-12 overflow-y-auto"
+            >
+              {/* Decorative blobs */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl -z-10" />
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-600/10 rounded-full blur-3xl -z-10" />
+
+              <div className="flex flex-col gap-6">
+                {/* User Section for Mobile */}
+                {session ? (
+                  <div className="p-4 bg-white/5 rounded-2xl border border-white/10 mb-2">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="relative w-12 h-12">
+                        <Image
+                          src={session.user?.image || '/images/default-avatar.png'}
+                          alt={session.user?.name || 'User'}
+                          fill
+                          className="rounded-full object-cover border-2 border-blue-400"
+                        />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-white font-bold">{session.user?.username}</span>
+                        <span className="text-blue-300 text-xs uppercase tracking-wider">{session.user?.role}</span>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      <Link
+                        href="/profile"
+                        className="flex items-center justify-center gap-2 py-2 bg-blue-500/20 text-blue-300 rounded-lg text-sm font-medium"
+                      >
+                        <User size={16} /> 내 프로필
+                      </Link>
+                      <button
+                        onClick={() => signOut()}
+                        className="flex items-center justify-center gap-2 py-2 bg-red-500/20 text-red-300 rounded-lg text-sm font-medium"
+                      >
+                        <LogOut size={16} /> 로그아웃
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => router.push('/auth/login')}
+                    className="w-full py-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold rounded-2xl shadow-lg flex items-center justify-center gap-2"
+                  >
+                    <LogIn size={20} /> Login
+                  </button>
+                )}
+
+                <Link
+                  href="/news/board"
+                  className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-2xl shadow-lg flex items-center justify-center gap-2"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
+                    <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
+                  </svg>
+                  자유 게시판
+                </Link>
+
+                <div className="h-px bg-white/10 my-2" />
+
+                {/* Main Links for Mobile */}
+                <div className="flex flex-col gap-1">
+                  {navLinks.map((link) => (
+                    <div key={link.name} className="flex flex-col">
+                      <div className="flex items-center justify-between py-3 border-b border-white/5">
+                        <span className="text-white/70 text-xs font-bold uppercase tracking-widest">{link.name}</span>
+                      </div>
+                      <div className="grid grid-cols-1 gap-1 py-2 pl-2">
+                        {link.sublinks?.map((sub) => (
+                          <Link
+                            key={sub.name}
+                            href={sub.href}
+                            className="flex items-center justify-between py-3 px-4 text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-all"
+                          >
+                            <span className="text-base font-medium">{sub.name}</span>
+                            <ChevronRight size={18} className="text-[#D4AF37]" />
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </nav>
   );

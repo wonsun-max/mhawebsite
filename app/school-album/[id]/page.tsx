@@ -261,15 +261,15 @@ export default function AlbumDetailPage() {
                                 <>
                                     <button
                                         onClick={(e) => { e.stopPropagation(); goToPrevious(); }}
-                                        className="absolute left-8 top-1/2 -translate-y-1/2 w-16 h-16 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full flex items-center justify-center transition-all group hidden md:flex"
+                                        className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 w-12 h-12 sm:w-16 sm:h-16 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full flex items-center justify-center transition-all group z-[110]"
                                     >
-                                        <ChevronLeft className="w-10 h-10 text-white group-hover:-translate-x-1 transition-transform" />
+                                        <ChevronLeft className="w-6 h-6 sm:w-10 sm:h-10 text-white group-hover:-translate-x-1 transition-transform" />
                                     </button>
                                     <button
                                         onClick={(e) => { e.stopPropagation(); goToNext(); }}
-                                        className="absolute right-8 top-1/2 -translate-y-1/2 w-16 h-16 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full flex items-center justify-center transition-all group hidden md:flex"
+                                        className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 w-12 h-12 sm:w-16 sm:h-16 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full flex items-center justify-center transition-all group z-[110]"
                                     >
-                                        <ChevronRight className="w-10 h-10 text-white group-hover:translate-x-1 transition-transform" />
+                                        <ChevronRight className="w-6 h-6 sm:w-10 sm:h-10 text-white group-hover:translate-x-1 transition-transform" />
                                     </button>
                                 </>
                             )}

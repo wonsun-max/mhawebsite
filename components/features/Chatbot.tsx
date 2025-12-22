@@ -94,7 +94,7 @@ export default function Chatbot() {
             animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
             exit={{ opacity: 0, y: 20, scale: 0.95, filter: 'blur(10px)' }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed bottom-24 right-6 z-50 w-[350px] sm:w-[380px] h-[600px] max-h-[80vh] bg-[#0A1929]/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-[#D4AF37]/30 flex flex-col overflow-hidden"
+            className="fixed bottom-24 right-4 left-4 sm:left-auto sm:right-6 z-50 sm:w-[380px] h-[600px] max-h-[70vh] sm:max-h-[80vh] bg-[#0A1929]/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-[#D4AF37]/30 flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="bg-[#050B14] p-5 flex items-center justify-between text-white relative overflow-hidden border-b border-[#D4AF37]/20">

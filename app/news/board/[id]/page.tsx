@@ -116,6 +116,45 @@ export default function PostDetailPage() {
     }
   };
 
+  const handleCommentLikeToggle = async (commentId: string) => {
+    if (!isLoggedIn) {
+      if (confirm('로그인이 필요한 서비스입니다. 로그인 페이지로 이동하시겠습니까?')) {
+        router.push('/auth/login');
+      }
+      return;
+    }
+
+    if (!post) return;
+
+    // Optimistic update
+    const updatedComments = post.comments.map(comment => {
+      if (comment.id === commentId) {
+        const prevIsLiked = comment.isLiked;
+        return {
+          ...comment,
+          isLiked: !prevIsLiked,
+          likeCount: prevIsLiked ? comment.likeCount - 1 : comment.likeCount + 1
+        };
+      }
+      return comment;
+    });
+
+    setPost({ ...post, comments: updatedComments });
+
+    try {
+      const res = await fetch(`/api/comments/${commentId}/reactions`, { method: 'POST' });
+      const data = await res.json();
+
+      if (!data.success) {
+        alert('댓글 좋아요 처리에 실패했습니다.');
+        // Refetch post to sync state
+        // (Optional: fetchPost() call if it were globally available)
+      }
+    } catch (error) {
+      console.error('Error toggling comment like:', error);
+    }
+  };
+
   // Check if user can modify this post
   const userCanModifyPost = post && session?.user && (
     session.user.role === 'ADMIN' || (post.author && session.user.id === post.author.id)
@@ -360,32 +399,32 @@ export default function PostDetailPage() {
       heroImageUrl="/images/campus3.jpg"
       heroImageAlt="Post Detail"
     >
-      <div className="bg-gray-800 rounded-2xl p-8 shadow-lg max-w-4xl mx-auto">
+      <div className="bg-gray-800 rounded-2xl p-4 sm:p-8 shadow-lg max-w-4xl mx-auto">
         {isEditing ? (
           <>
             <input
               type="text"
-              className="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 text-3xl font-bold mb-4"
+              className="w-full px-4 py-2.5 rounded-lg bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 text-xl sm:text-3xl font-bold mb-4"
               value={editedTitle}
               onChange={(e) => setEditedTitle(e.target.value)}
               disabled={isSaving}
             />
-            <div className="flex items-center gap-4 text-sm text-gray-500 mb-6">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-500 mb-6">
               <div className="flex items-center gap-1">
-                <User className="w-4 h-4" />
+                <User className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 {post.author?.koreanName || post.author?.name || '알 수 없음'}
               </div>
               <div className="flex items-center gap-1">
-                <Calendar className="w-4 h-4" />
+                <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 {new Date(post.createdAt).toLocaleDateString('ko-KR')}
               </div>
               <div className="flex items-center gap-1">
-                <Eye className="w-4 h-4" />
-                조회 {post.views}
+                <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <span>조회 {post.views}</span>
               </div>
               <div className="flex items-center gap-1">
-                <MessageCircle className="w-4 h-4" />
-                댓글 {post.comments.length}
+                <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <span>댓글 {post.comments.length}</span>
               </div>
             </div>
             <textarea
@@ -405,18 +444,18 @@ export default function PostDetailPage() {
                 {editError}
               </motion.div>
             )}
-            <div className="flex justify-end gap-4">
+            <div className="flex flex-col sm:flex-row justify-end gap-3 sm:gap-4">
               <button
                 onClick={() => setIsEditing(false)}
-                className="px-6 py-3 bg-gray-600 rounded-full font-semibold hover:bg-gray-700 transition-colors text-white"
+                className="order-2 sm:order-1 px-6 py-2.5 bg-gray-600 rounded-full font-semibold hover:bg-gray-700 transition-colors text-white flex items-center justify-center gap-2"
                 disabled={isSaving}
               >
-                <X className="w-5 h-5 mr-2" />
+                <X className="w-5 h-5" />
                 취소
               </button>
               <button
                 onClick={handleEditSave}
-                className="px-6 py-3 bg-blue-600 rounded-full font-semibold hover:bg-blue-700 transition-colors flex items-center gap-2 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                className="order-1 sm:order-2 px-6 py-2.5 bg-blue-600 rounded-full font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 text-white disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={isSaving}
               >
                 {isSaving ? (
@@ -435,10 +474,10 @@ export default function PostDetailPage() {
           </>
         ) : (
           <>
-            <div className="flex justify-between items-start mb-4">
-              <h1 className="text-3xl font-bold text-white">{post.title}</h1>
+            <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-4">
+              <h1 className="text-xl sm:text-3xl font-bold text-white leading-tight">{post.title}</h1>
               {userCanModifyPost && (
-                <div className="flex gap-2">
+                <div className="flex gap-2 w-full sm:w-auto justify-end">
                   <button
                     onClick={() => setIsEditing(true)}
                     className="p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors text-white"
@@ -456,22 +495,22 @@ export default function PostDetailPage() {
                 </div>
               )}
             </div>
-            <div className="flex items-center gap-4 text-sm text-gray-500 mb-6">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-500 mb-6 pb-6 border-b border-gray-700/50">
               <div className="flex items-center gap-1">
-                <User className="w-4 h-4" />
+                <User className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 {post.anonymousNickname || post.author?.koreanName || post.author?.name || '알 수 없음'}
               </div>
               <div className="flex items-center gap-1">
-                <Calendar className="w-4 h-4" />
+                <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 {new Date(post.createdAt).toLocaleDateString('ko-KR')}
               </div>
               <div className="flex items-center gap-1">
-                <Eye className="w-4 h-4" />
-                조회 {post.views}
+                <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <span>조회 {post.views}</span>
               </div>
               <div className="flex items-center gap-1">
-                <MessageCircle className="w-4 h-4" />
-                댓글 {post.comments?.length || 0}
+                <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <span>댓글 {post.comments?.length || 0}</span>
               </div>
             </div>
 
@@ -495,7 +534,7 @@ export default function PostDetailPage() {
               </button>
             </div>
 
-            <div className="prose prose-invert max-w-none text-gray-300 leading-relaxed mb-8 whitespace-pre-wrap">
+            <div className="prose prose-invert max-w-none text-gray-300 leading-relaxed mb-12 whitespace-pre-wrap text-sm sm:text-base">
               {post.content}
             </div>
 
@@ -506,25 +545,25 @@ export default function PostDetailPage() {
               ) : (
                 <div className="space-y-4">
                   {post.comments?.map((comment) => (
-                    <div key={comment.id} className="bg-gray-700 rounded-lg p-4">
+                    <div key={comment.id} className="bg-gray-700 rounded-lg p-3 sm:p-4">
                       <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center gap-3">
-                          <User className="w-4 h-4 text-gray-400" />
-                          <span className="font-semibold text-white">{comment.author?.koreanName || comment.author?.name || '알 수 없음'}</span>
-                          <span className="text-sm text-gray-400">{new Date(comment.createdAt).toLocaleDateString('ko-KR')}</span>
+                        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                          <User className="w-3.5 h-3.5 text-gray-400" />
+                          <span className="font-semibold text-white text-sm sm:text-base">{comment.author?.koreanName || comment.author?.name || '알 수 없음'}</span>
+                          <span className="text-[10px] sm:text-xs text-gray-400">{new Date(comment.createdAt).toLocaleDateString('ko-KR')}</span>
                         </div>
                         <button
                           onClick={() => handleCommentLikeToggle(comment.id)}
-                          className={`flex items-center gap-1 text-xs px-2 py-1 rounded-full transition-colors ${comment.isLiked
+                          className={`flex items-center gap-1 text-[10px] sm:text-xs px-2 py-1 rounded-full transition-colors ${comment.isLiked
                             ? 'text-pink-400 bg-pink-400/10 hover:bg-pink-400/20'
                             : 'text-gray-400 hover:text-gray-300 hover:bg-gray-600'
                             }`}
                         >
-                          <Heart className={`w-3 h-3 ${comment.isLiked ? 'fill-current' : ''}`} />
+                          <Heart className={`w-2.5 h-2.5 sm:w-3 h-3 ${comment.isLiked ? 'fill-current' : ''}`} />
                           <span>{comment.likeCount}</span>
                         </button>
                       </div>
-                      <p className="text-gray-300 whitespace-pre-wrap">{comment.text}</p>
+                      <p className="text-gray-300 whitespace-pre-wrap text-sm sm:text-base">{comment.text}</p>
                     </div>
                   ))}
                 </div>

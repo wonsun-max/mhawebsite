@@ -199,13 +199,13 @@ export default function SignupPage() {
           </div>
 
           {/* Progress Bar */}
-          <div className="flex justify-between mb-8 relative">
-            <div className="absolute top-1/2 left-0 w-full h-0.5 bg-white/10 -z-10" />
+          <div className="flex justify-between mb-8 relative px-2 sm:px-0">
+            <div className="absolute top-1/2 left-0 w-full h-px bg-white/10 -z-10" />
             {steps.map((s, i) => (
               <div
                 key={s}
-                className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${i <= currentStepIndex
-                  ? "bg-blue-500 text-white shadow-lg shadow-blue-500/30"
+                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[10px] sm:text-xs font-bold transition-all duration-300 ${i <= currentStepIndex
+                  ? "bg-blue-500 text-white shadow-lg shadow-blue-500/30 ring-2 ring-blue-500/20"
                   : "bg-gray-800 text-gray-500 border border-white/10"
                   }`}
               >
@@ -282,12 +282,12 @@ export default function SignupPage() {
                     <p className="text-white font-medium">{email}</p>
                   </div>
 
-                  <div className="relative group">
-                    <div className="flex justify-center gap-2">
+                  <div className="relative group overflow-x-auto pb-4">
+                    <div className="flex justify-center gap-1.5 sm:gap-2 min-w-[300px] sm:min-w-0">
                       {[0, 1, 2, 3, 4, 5].map((index) => (
                         <div
                           key={index}
-                          className={`w-12 h-16 rounded-2xl border-2 flex items-center justify-center text-2xl font-bold transition-all duration-300 ${code[index]
+                          className={`w-10 h-14 sm:w-12 sm:h-16 rounded-xl sm:rounded-2xl border-2 flex items-center justify-center text-xl sm:text-2xl font-bold transition-all duration-300 ${code[index]
                             ? "border-[#D4AF37] bg-white/10 text-white shadow-[0_0_15px_rgba(212,175,55,0.2)]"
                             : "border-white/10 bg-white/5 text-gray-600"
                             }`}
@@ -454,7 +454,7 @@ export default function SignupPage() {
                   exit={{ opacity: 0, x: -20 }}
                   className="space-y-4"
                 >
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <label className="text-sm text-gray-300 ml-1">이름 (영문)</label>
                       <input
@@ -462,7 +462,7 @@ export default function SignupPage() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="Hong Gildong"
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-sm sm:text-base"
                       />
                     </div>
                     <div className="space-y-2">
@@ -472,19 +472,19 @@ export default function SignupPage() {
                         value={koreanName}
                         onChange={(e) => setKoreanName(e.target.value)}
                         placeholder="홍길동"
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-sm sm:text-base"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <label className="text-sm text-gray-300 ml-1">생년월일</label>
                       <input
                         type="date"
                         value={birthdate}
                         onChange={(e) => setBirthdate(e.target.value)}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-sm sm:text-base"
                       />
                     </div>
                     <div className="space-y-2">
@@ -492,7 +492,7 @@ export default function SignupPage() {
                       <select
                         value={gender}
                         onChange={(e) => setGender(e.target.value as "MALE" | "FEMALE")}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all [&>option]:bg-gray-800"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all [&>option]:bg-gray-800 text-sm sm:text-base"
                       >
                         <option value="">선택</option>
                         <option value="MALE">남성</option>

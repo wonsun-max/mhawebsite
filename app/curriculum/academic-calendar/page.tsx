@@ -193,126 +193,129 @@ export default function AcademicCalendarPage() {
                   ))}
                 </div>
 
-                <div className="relative">
-                  {/* Calendar Grid */}
-                  <div className="grid grid-cols-7 gap-px bg-gray-700 rounded-lg overflow-hidden border border-gray-700">
-                    {(() => {
-                      const days = eachDayOfInterval({
-                        start: startOfMonth(currentDate),
-                        end: endOfMonth(currentDate),
-                      });
-                      const startDay = getDay(startOfMonth(currentDate));
-                      const emptyDays = Array(startDay).fill(null);
-
-                      return (
-                        <>
-                          {emptyDays.map((_, i) => (
-                            <div key={`empty-${i}`} className="bg-gray-900 min-h-[100px]" />
-                          ))}
-                          {days.map((day: Date) => {
-                            const dateKey = format(day, 'yyyy-MM-dd');
-                            const isToday = isSameDay(day, new Date());
-
-                            return (
-                              <div
-                                key={dateKey}
-                                className="bg-gray-800 min-h-[100px] p-2 relative"
-                              >
-                                <div className="flex justify-between items-start mb-1">
-                                  <span className={`text-sm font-medium w-6 h-6 flex items-center justify-center rounded-full ${isToday ? 'bg-blue-600 text-white' : 'text-gray-300'} ${getDay(day) === 0 ? 'text-red-400' : getDay(day) === 6 ? 'text-blue-400' : ''}`}>
-                                    {format(day, 'd')}
-                                  </span>
-                                </div>
-                              </div>
-                            );
-                          })}
-                        </>
-                      );
-                    })()}
-                  </div>
-
-                  {/* Event Bars Overlay */}
-                  <div className="absolute top-0 left-0 right-0 pointer-events-none" style={{ marginTop: '40px' }}>
-                    {(() => {
-                      // Get all unique events for this month
-                      let uniqueEvents = Array.from(new Map(Object.values(events).flat().map(e => [e.id, e])).values());
-
-                      // Filter by category if selected
-                      if (selectedCategory !== 'all') {
-                        uniqueEvents = uniqueEvents.filter(e => e.category === selectedCategory);
-                      }
-
-                      // Sort by start date
-                      const sortedEvents = uniqueEvents.sort((a, b) =>
-                        new Date(a.date).getTime() - new Date(b.date).getTime()
-                      );
-
-                      return sortedEvents.map((event, eventIdx) => {
-                        const eventStart = new Date(event.date);
-                        const eventEnd = event.endDate ? new Date(event.endDate) : eventStart;
-
-                        // Calculate position in calendar grid
-                        const monthStart = startOfMonth(currentDate);
-                        const startDay = getDay(monthStart);
-
-                        // Find which row this event starts on
-                        const daysSinceMonthStart = Math.floor((eventStart.getTime() - monthStart.getTime()) / (1000 * 60 * 60 * 24));
-                        const totalDaysFromStart = startDay + daysSinceMonthStart;
-                        const row = Math.floor(totalDaysFromStart / 7);
-                        const col = totalDaysFromStart % 7;
-
-                        // Calculate span (how many days)
-                        const span = Math.floor((eventEnd.getTime() - eventStart.getTime()) / (1000 * 60 * 60 * 24)) + 1;
-
-                        // Calculate how many days fit in current row
-                        const daysInFirstRow = Math.min(span, 7 - col);
-
-                        const cat = categories.find(c => c.value === event.category);
+                {/* Calendar Grid Container */}
+                <div className="overflow-x-auto -mx-4 sm:-mx-0 pb-4">
+                  <div className="min-w-[600px] relative">
+                    {/* Calendar Grid */}
+                    <div className="grid grid-cols-7 gap-px bg-gray-700 rounded-lg overflow-hidden border border-gray-700">
+                      {(() => {
+                        const days = eachDayOfInterval({
+                          start: startOfMonth(currentDate),
+                          end: endOfMonth(currentDate),
+                        });
+                        const startDay = getDay(startOfMonth(currentDate));
+                        const emptyDays = Array(startDay).fill(null);
 
                         return (
-                          <div key={event.id}>
-                            {/* First row segment */}
-                            <div
-                              className={`absolute ${cat?.color || 'bg-gray-600'} text-white text-xs px-2 py-1 rounded pointer-events-auto cursor-pointer hover:opacity-90 transition-opacity`}
-                              style={{
-                                top: `${row * 100 + eventIdx * 24}px`,
-                                left: `${(col / 7) * 100}%`,
-                                width: `${(daysInFirstRow / 7) * 100}%`,
-                                height: '20px',
-                                zIndex: 20,
-                              }}
-                            >
-                              <div className="truncate font-medium">{event.title}</div>
-                            </div>
+                          <>
+                            {emptyDays.map((_, i) => (
+                              <div key={`empty-${i}`} className="bg-gray-900 min-h-[100px]" />
+                            ))}
+                            {days.map((day: Date) => {
+                              const dateKey = format(day, 'yyyy-MM-dd');
+                              const isToday = isSameDay(day, new Date());
 
-                            {/* Additional rows if event spans multiple weeks */}
-                            {span > daysInFirstRow && (() => {
-                              const remainingDays = span - daysInFirstRow;
-                              const additionalRows = Math.ceil(remainingDays / 7);
-
-                              return Array.from({ length: additionalRows }).map((_, i) => {
-                                const rowDays = Math.min(remainingDays - (i * 7), 7);
-                                return (
-                                  <div
-                                    key={`${event.id}-row-${i + 1}`}
-                                    className={`absolute ${cat?.color || 'bg-gray-600'} text-white text-xs px-2 py-1 rounded pointer-events-auto cursor-pointer hover:opacity-90 transition-opacity`}
-                                    style={{
-                                      top: `${(row + i + 1) * 100 + eventIdx * 24}px`,
-                                      left: '0%',
-                                      width: `${(rowDays / 7) * 100}%`,
-                                      height: '20px',
-                                      zIndex: 20,
-                                    }}
-                                  >
-                                    <div className="truncate font-medium">{event.title}</div>
+                              return (
+                                <div
+                                  key={dateKey}
+                                  className="bg-gray-800 min-h-[100px] p-2 relative"
+                                >
+                                  <div className="flex justify-between items-start mb-1">
+                                    <span className={`text-sm font-medium w-6 h-6 flex items-center justify-center rounded-full ${isToday ? 'bg-blue-600 text-white' : 'text-gray-300'} ${getDay(day) === 0 ? 'text-red-400' : getDay(day) === 6 ? 'text-blue-400' : ''}`}>
+                                      {format(day, 'd')}
+                                    </span>
                                   </div>
-                                );
-                              });
-                            })()}
-                          </div>
+                                </div>
+                              );
+                            })}
+                          </>
                         );
-                      });
-                    })()}
+                      })()}
+                    </div>
+
+                    {/* Event Bars Overlay */}
+                    <div className="absolute top-0 left-0 right-0 pointer-events-none" style={{ marginTop: '40px' }}>
+                      {(() => {
+                        // Get all unique events for this month
+                        let uniqueEvents = Array.from(new Map(Object.values(events).flat().map(e => [e.id, e])).values());
+
+                        // Filter by category if selected
+                        if (selectedCategory !== 'all') {
+                          uniqueEvents = uniqueEvents.filter(e => e.category === selectedCategory);
+                        }
+
+                        // Sort by start date
+                        const sortedEvents = uniqueEvents.sort((a, b) =>
+                          new Date(a.date).getTime() - new Date(b.date).getTime()
+                        );
+
+                        return sortedEvents.map((event, eventIdx) => {
+                          const eventStart = new Date(event.date);
+                          const eventEnd = event.endDate ? new Date(event.endDate) : eventStart;
+
+                          // Calculate position in calendar grid
+                          const monthStart = startOfMonth(currentDate);
+                          const startDay = getDay(monthStart);
+
+                          // Find which row this event starts on
+                          const daysSinceMonthStart = Math.floor((eventStart.getTime() - monthStart.getTime()) / (1000 * 60 * 60 * 24));
+                          const totalDaysFromStart = startDay + daysSinceMonthStart;
+                          const row = Math.floor(totalDaysFromStart / 7);
+                          const col = totalDaysFromStart % 7;
+
+                          // Calculate span (how many days)
+                          const span = Math.floor((eventEnd.getTime() - eventStart.getTime()) / (1000 * 60 * 60 * 24)) + 1;
+
+                          // Calculate how many days fit in current row
+                          const daysInFirstRow = Math.min(span, 7 - col);
+
+                          const cat = categories.find(c => c.value === event.category);
+
+                          return (
+                            <div key={event.id}>
+                              {/* First row segment */}
+                              <div
+                                className={`absolute ${cat?.color || 'bg-gray-600'} text-white text-xs px-2 py-1 rounded pointer-events-auto cursor-pointer hover:opacity-90 transition-opacity`}
+                                style={{
+                                  top: `${row * 100 + eventIdx * 24}px`,
+                                  left: `${(col / 7) * 100}%`,
+                                  width: `${(daysInFirstRow / 7) * 100}%`,
+                                  height: '20px',
+                                  zIndex: 20,
+                                }}
+                              >
+                                <div className="truncate font-medium">{event.title}</div>
+                              </div>
+
+                              {/* Additional rows if event spans multiple weeks */}
+                              {span > daysInFirstRow && (() => {
+                                const remainingDays = span - daysInFirstRow;
+                                const additionalRows = Math.ceil(remainingDays / 7);
+
+                                return Array.from({ length: additionalRows }).map((_, i) => {
+                                  const rowDays = Math.min(remainingDays - (i * 7), 7);
+                                  return (
+                                    <div
+                                      key={`${event.id}-row-${i + 1}`}
+                                      className={`absolute ${cat?.color || 'bg-gray-600'} text-white text-xs px-2 py-1 rounded pointer-events-auto cursor-pointer hover:opacity-90 transition-opacity`}
+                                      style={{
+                                        top: `${(row + i + 1) * 100 + eventIdx * 24}px`,
+                                        left: '0%',
+                                        width: `${(rowDays / 7) * 100}%`,
+                                        height: '20px',
+                                        zIndex: 20,
+                                      }}
+                                    >
+                                      <div className="truncate font-medium">{event.title}</div>
+                                    </div>
+                                  );
+                                });
+                              })()}
+                            </div>
+                          );
+                        });
+                      })()}
+                    </div>
                   </div>
                 </div>
 

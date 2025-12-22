@@ -26,27 +26,36 @@ interface TimelineProps {
 export default function Timeline({ events }: TimelineProps) {
   return (
     <div className="relative">
-      <div className="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-gray-200" />
+      {/* Central Line - Hidden on Mobile */}
+      <div className="absolute left-4 md:left-1/2 -translate-x-1/2 h-full w-0.5 bg-white/10" />
+
       {events.map((event, index) => (
         <motion.div
           key={index}
-          className="relative mb-12"
+          className="relative mb-12 last:mb-0 ml-12 md:ml-0"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: index * 0.2 }}
         >
-          <div className={`flex items-center ${index % 2 === 0 ? 'flex-row-reverse' : ''}`}>
-            <div className="w-1/2 px-4">
-              <div className={`text-lg font-bold ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>{event.year}</div>
+          <div className="flex flex-col md:flex-row items-start md:items-center">
+            {/* Year for Desktop/Mobile */}
+            <div className={`w-full md:w-1/2 px-0 md:px-8 mb-4 md:mb-0 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left order-last md:order-first'}`}>
+              <div className="text-2xl font-bold text-[#D4AF37] mb-1">{event.year}</div>
             </div>
-            <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center z-10">
-              {iconMap[event.icon]}
+
+            {/* Icon - Positioned differently on mobile */}
+            <div className="absolute -left-12 md:left-1/2 md:-translate-x-1/2 w-10 h-10 md:w-14 md:h-14 bg-gradient-to-br from-[#D4AF37] to-[#B8860B] rounded-xl md:rounded-2xl flex items-center justify-center z-10 shadow-lg shadow-[#D4AF37]/20">
+              <div className="scale-75 md:scale-100">
+                {iconMap[event.icon]}
+              </div>
             </div>
-            <div className="w-1/2 px-4">
-              <div className={`p-6 bg-white rounded-lg shadow-lg ${index % 2 === 0 ? 'text-left' : 'text-right'}`}>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">{event.title}</h3>
-                <p className="text-gray-600">{event.desc}</p>
+
+            {/* Content Card */}
+            <div className={`w-full md:w-1/2 px-0 md:px-8 ${index % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}>
+              <div className="p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 hover:border-[#D4AF37]/30 transition-all duration-300">
+                <h3 className="text-xl font-bold text-white mb-2">{event.title}</h3>
+                {event.desc && <p className="text-slate-400 text-sm md:text-base leading-relaxed">{event.desc}</p>}
               </div>
             </div>
           </div>

@@ -175,7 +175,7 @@ export default function ActivitiesPage() {
           >
             리더십 훈련
           </motion.h3>
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {leadershipPrograms.map((program, index) => (
               <motion.div
                 key={program.title}

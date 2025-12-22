@@ -132,11 +132,11 @@ export default function AnnouncementsPage() {
                     </h3>
 
                     <div className="mt-auto flex items-center justify-between pt-4 border-t border-white/5">
-                        <span className="text-xs text-gray-500 flex items-center gap-1">
+                        <span className="text-[10px] sm:text-xs text-gray-500 flex items-center gap-1">
                             <User className="w-3 h-3" />
                             {item.author.koreanName || item.author.name || '관리자'}
                         </span>
-                        <span className="text-xs text-blue-400/0 group-hover:text-blue-400 transition-all transform translate-x-2 group-hover:translate-x-0 flex items-center gap-1">
+                        <span className="text-[10px] sm:text-xs text-blue-400 sm:text-blue-400/0 sm:group-hover:text-blue-400 transition-all transform translate-x-0 sm:translate-x-2 sm:group-hover:translate-x-0 flex items-center gap-1">
                             자세히 보기 <ArrowRight className="w-3 h-3" />
                         </span>
                     </div>
@@ -164,7 +164,7 @@ export default function AnnouncementsPage() {
                         placeholder="제목이나 내용으로 검색하세요..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="block w-full pl-11 pr-4 py-4 bg-gray-800/50 border border-gray-700 rounded-2xl text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all shadow-lg backdrop-blur-sm"
+                        className="block w-full pl-11 pr-4 py-3 sm:py-4 bg-gray-800/50 border border-gray-700 rounded-2xl text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all shadow-lg backdrop-blur-sm text-sm sm:text-base"
                     />
                 </div>
 

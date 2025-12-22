@@ -72,10 +72,10 @@ const UserOnboarding = () => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-bottom from-slate-950 via-indigo-950 to-slate-900 p-4"
+      className="flex flex-col items-center justify-center min-h-screen bg-[#0A1929] p-4 sm:p-6"
     >
-      <div className="bg-white p-8 rounded-lg shadow-xl w-full max-w-md text-gray-800">
-        <h2 className="text-3xl font-bold mb-6 text-center">Complete Your Profile</h2>
+      <div className="bg-white p-6 sm:p-8 rounded-[2rem] shadow-2xl w-full max-w-md text-gray-800 border border-white/10">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-[#0A1929]">Complete Your Profile</h2>
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
             <label htmlFor="koreanName" className="block text-sm font-medium text-gray-700">Korean Name</label>

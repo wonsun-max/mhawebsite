@@ -67,10 +67,10 @@ export default function InquiryForm({ category = 'GENERAL', title = "Send us a M
     }
 
     return (
-        <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 lg:p-10 relative overflow-hidden">
+        <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-6 sm:p-8 lg:p-10 relative overflow-hidden text-gray-900">
             <div className="absolute top-0 left-0 w-full h-2 bg-[#D4AF37]" />
-            <h3 className="text-2xl font-bold text-[#0A1929] mb-2">{title}</h3>
-            <p className="text-gray-500 mb-8">{subtitle}</p>
+            <h3 className="text-xl sm:text-2xl font-bold text-[#0A1929] mb-2">{title}</h3>
+            <p className="text-sm sm:text-base text-gray-500 mb-6 sm:mb-8">{subtitle}</p>
 
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">

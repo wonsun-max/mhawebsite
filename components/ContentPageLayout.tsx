@@ -24,7 +24,7 @@ export default function ContentPageLayout({
   return (
     <div className="min-h-screen bg-transparent">
       {/* Hero Section - Matching Main Page Style */}
-      <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[30vh] md:h-[50vh] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -44,11 +44,11 @@ export default function ContentPageLayout({
           transition={{ duration: 0.8 }}
           className="relative z-10 text-center px-6 max-w-5xl mx-auto"
         >
-          <h1 className="text-5xl md:text-7xl font-serif font-bold mb-4 text-white tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-7xl font-serif font-bold mb-3 md:mb-4 text-white tracking-tight leading-tight">
             {title}
           </h1>
           {subtitle && (
-            <p className="text-xl md:text-2xl text-slate-300 font-light">
+            <p className="text-lg md:text-2xl text-slate-300 font-light px-4">
               {subtitle}
             </p>
           )}

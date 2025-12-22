@@ -402,31 +402,31 @@ function PostCard({ post, index, isPinned = false }: { post: Post; index: number
           </h3>
 
           {/* Meta Information */}
-          <div className="flex items-center gap-4 text-sm text-gray-400">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs sm:text-sm text-gray-400">
             <div className="flex items-center gap-1.5">
-              <User className="w-4 h-4" />
+              <User className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span>{post.anonymousNickname || post.author?.koreanName || post.author?.name || '알 수 없음'}</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Calendar className="w-4 h-4" />
+              <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span>{new Date(post.createdAt).toLocaleDateString('ko-KR')}</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Eye className="w-4 h-4" />
+              <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span>{post.views}</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <ThumbsUp className={`w-4 h-4 ${hasReacted ? 'fill-blue-500 text-blue-500' : ''}`} />
+              <ThumbsUp className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${hasReacted ? 'fill-blue-500 text-blue-500' : ''}`} />
               <span>{post._count?.reactions || 0}</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <MessageCircle className="w-4 h-4" />
+              <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span>{post.comments.length}</span>
             </div>
           </div>
 
-          {/* Hover Indicator */}
-          <div className="absolute right-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
+          {/* Hover Indicator - Only on desktop */}
+          <div className="absolute right-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity hidden sm:block">
             <TrendingUp className="w-6 h-6 text-blue-400" />
           </div>
         </div>

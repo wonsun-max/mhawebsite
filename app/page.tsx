@@ -89,10 +89,10 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           >
-            <h2 className="text-[#D4AF37] text-lg md:text-xl font-medium tracking-[0.3em] uppercase mb-6" style={{ fontFamily: 'var(--font-outfit)' }}>
+            <h2 className="text-[#D4AF37] text-sm md:text-xl font-medium tracking-[0.3em] uppercase mb-4 md:mb-6" style={{ fontFamily: 'var(--font-outfit)' }}>
               Welcome to
             </h2>
-            <h1 className="text-7xl md:text-9xl font-bold mb-8 tracking-tighter leading-none" style={{ fontFamily: 'var(--font-cormorant)' }}>
+            <h1 className="text-4xl sm:text-6xl md:text-9xl font-bold mb-6 md:mb-8 tracking-tighter leading-tight md:leading-none px-4" style={{ fontFamily: 'var(--font-cormorant)' }}>
               MANILA HANKUK<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#D4AF37]">ACADEMY</span>
             </h1>
@@ -103,11 +103,11 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
-            className="text-xl md:text-3xl text-slate-200 mb-12 font-light max-w-3xl mx-auto leading-relaxed"
+            className="text-lg md:text-3xl text-slate-200 mb-8 md:mb-12 font-light max-w-3xl mx-auto leading-relaxed px-4"
             style={{ fontFamily: 'var(--font-noto-sans-kr)' }}
           >
             마음을 키우고, 영감을 주는 곳<br />
-            <span className="text-base md:text-lg opacity-70 mt-2 block font-sans">Nurturing Minds, Inspiring Hearts</span>
+            <span className="text-sm md:text-lg opacity-70 mt-2 block font-sans">Nurturing Minds, Inspiring Hearts</span>
           </motion.p>
 
           <motion.div
@@ -120,7 +120,7 @@ export default function HomePage() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative px-10 py-5 bg-[#D4AF37] text-[#0A1929] rounded-full font-bold text-lg overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.3)] transition-all"
+                className="group relative px-8 md:px-10 py-4 md:py-5 bg-[#D4AF37] text-[#0A1929] rounded-full font-bold text-base md:text-lg overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.3)] transition-all w-full sm:w-auto"
               >
                 <span className="relative z-10 flex items-center">
                   입학 신청하기
@@ -133,7 +133,7 @@ export default function HomePage() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-10 py-5 bg-white/5 backdrop-blur-md border border-white/20 rounded-full font-semibold text-lg hover:bg-white/10 transition-all text-white"
+                className="px-8 md:px-10 py-4 md:py-5 bg-white/5 backdrop-blur-md border border-white/20 rounded-full font-semibold text-base md:text-lg hover:bg-white/10 transition-all text-white w-full sm:w-auto"
               >
                 학교 소개
               </motion.button>
@@ -179,7 +179,7 @@ export default function HomePage() {
                 <span className="text-[#D4AF37] font-bold tracking-widest uppercase text-sm">About MHA</span>
               </div>
 
-              <h2 className="text-6xl md:text-8xl font-bold mb-8 leading-[1.0] text-white" style={{ fontFamily: 'var(--font-cormorant)' }}>
+              <h2 className="text-4xl md:text-8xl font-bold mb-6 md:mb-8 leading-tight md:leading-[1.0] text-white" style={{ fontFamily: 'var(--font-cormorant)' }}>
                 Excellence in <br />
                 <span className="italic text-[#D4AF37]">Education</span>
               </h2>
@@ -222,25 +222,25 @@ export default function HomePage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative h-[700px] hidden lg:block"
+              className="relative h-[400px] md:h-[600px] lg:h-[700px]"
             >
-              <div className="absolute top-0 right-0 w-4/5 h-3/5 rounded-[2rem] overflow-hidden shadow-2xl z-10 border border-white/10">
+              <div className="absolute top-0 right-0 w-[85%] h-[65%] rounded-[1.5rem] md:rounded-[2rem] overflow-hidden shadow-2xl z-10 border border-white/10">
                 <Image src="/images/campus2.jpg" alt="Students" fill className="object-cover hover:scale-105 transition-transform duration-700" />
               </div>
-              <div className="absolute bottom-0 left-0 w-3/5 h-1/2 rounded-[2rem] overflow-hidden shadow-2xl z-20 border-8 border-[#0A1929]">
+              <div className="absolute bottom-0 left-0 w-[65%] h-[55%] rounded-[1.5rem] md:rounded-[2rem] overflow-hidden shadow-2xl z-20 border-4 md:border-8 border-[#0A1929]">
                 <Image src="/images/campus3.jpg" alt="Campus" fill className="object-cover hover:scale-105 transition-transform duration-700" />
               </div>
               {/* Decorative Circle */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-[#D4AF37]/20 rounded-full -z-10" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[500px] lg:w-[600px] h-[300px] md:h-[500px] lg:h-[600px] border border-[#D4AF37]/20 rounded-full -z-10" />
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Quick Access - Consistent Dark Background */}
-      <section className="relative py-32 px-6 bg-transparent border-t border-white/5 z-10">
+      <section className="relative py-20 md:py-32 px-6 bg-transparent border-t border-white/5 z-10">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
               { icon: GraduationCap, title: "Admissions", subtitle: "입학 안내", desc: "Start your journey with us", href: "/admissions/elementary" },
               { icon: Calendar, title: "Academic", subtitle: "학사 일정", desc: "Check the school calendar", href: "/curriculum/academic-calendar" },
@@ -253,19 +253,19 @@ export default function HomePage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: idx * 0.2 }}
                   whileHover={{ y: -10 }}
-                  className="group relative p-10 rounded-[2rem] bg-[#0F2137]/50 backdrop-blur-xl border border-white/5 hover:border-[#D4AF37]/30 transition-all duration-500 shadow-2xl hover:shadow-[#D4AF37]/10 overflow-hidden"
+                  className="group relative p-8 md:p-10 rounded-[1.5rem] md:rounded-[2rem] bg-[#0F2137]/50 backdrop-blur-xl border border-white/5 hover:border-[#D4AF37]/30 transition-all duration-500 shadow-2xl hover:shadow-[#D4AF37]/10 overflow-hidden"
                 >
-                  <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
-                    <item.icon className="w-32 h-32 text-white" />
+                  <div className="absolute top-0 right-0 p-6 md:p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
+                    <item.icon className="w-24 h-24 md:w-32 md:h-32 text-white" />
                   </div>
 
                   <div className="relative z-10">
-                    <div className="w-14 h-14 mb-8 rounded-2xl bg-gradient-to-br from-[#D4AF37] to-[#B8860B] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
-                      <item.icon className="w-7 h-7 text-[#0A1929]" />
+                    <div className="w-12 h-12 md:w-14 md:h-14 mb-6 md:mb-8 rounded-xl md:rounded-2xl bg-gradient-to-br from-[#D4AF37] to-[#B8860B] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
+                      <item.icon className="w-6 h-6 md:w-7 md:h-7 text-[#0A1929]" />
                     </div>
-                    <h3 className="text-4xl font-bold mb-2 text-white" style={{ fontFamily: 'var(--font-cormorant)' }}>{item.title}</h3>
-                    <p className="text-[#D4AF37] font-medium mb-4 tracking-wide" style={{ fontFamily: 'var(--font-outfit)' }}>{item.subtitle}</p>
-                    <p className="text-slate-400 group-hover:text-slate-300 transition-colors">{item.desc}</p>
+                    <h3 className="text-3xl md:text-4xl font-bold mb-2 text-white" style={{ fontFamily: 'var(--font-cormorant)' }}>{item.title}</h3>
+                    <p className="text-[#D4AF37] font-medium mb-3 md:mb-4 tracking-wide" style={{ fontFamily: 'var(--font-outfit)' }}>{item.subtitle}</p>
+                    <p className="text-sm md:text-base text-slate-400 group-hover:text-slate-300 transition-colors">{item.desc}</p>
                   </div>
 
                   <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#D4AF37] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
@@ -286,10 +286,10 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-16"
+            className="mb-12 md:mb-16"
           >
-            <h2 className="text-6xl md:text-8xl font-bold mb-6 text-white" style={{ fontFamily: 'var(--font-cormorant)' }}>Experience MHA</h2>
-            <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+            <h2 className="text-4xl md:text-8xl font-bold mb-4 md:mb-6 text-white" style={{ fontFamily: 'var(--font-cormorant)' }}>Experience MHA</h2>
+            <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto px-4">
               캠퍼스의 활기찬 일상과 학생들의 열정을 영상으로 만나보세요.
             </p>
           </motion.div>
@@ -331,7 +331,7 @@ export default function HomePage() {
                 <span className="text-[#D4AF37] font-bold tracking-widest uppercase text-sm">Admissions</span>
               </div>
 
-              <h2 className="text-5xl md:text-7xl font-bold mb-6 leading-tight" style={{ fontFamily: 'var(--font-cormorant)' }}>
+              <h2 className="text-4xl md:text-7xl font-bold mb-6 leading-tight" style={{ fontFamily: 'var(--font-cormorant)' }}>
                 Begin Your <br />
                 <span className="text-[#D4AF37] italic">Journey</span>
               </h2>
@@ -347,7 +347,7 @@ export default function HomePage() {
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="px-8 py-4 bg-[#D4AF37] text-[#0A1929] rounded-lg font-bold text-lg hover:bg-[#C5A028] transition-colors shadow-lg shadow-[#D4AF37]/20"
+                    className="px-6 md:px-8 py-3 md:py-4 bg-[#D4AF37] text-[#0A1929] rounded-lg font-bold text-base md:text-lg hover:bg-[#C5A028] transition-colors shadow-lg shadow-[#D4AF37]/20 w-full sm:w-auto"
                   >
                     입학 안내 (Admissions)
                   </motion.button>
@@ -356,7 +356,7 @@ export default function HomePage() {
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="px-8 py-4 bg-transparent border border-white/20 text-white rounded-lg font-medium text-lg hover:bg-white/5 transition-colors backdrop-blur-sm"
+                    className="px-6 md:px-8 py-3 md:py-4 bg-transparent border border-white/20 text-white rounded-lg font-medium text-base md:text-lg hover:bg-white/5 transition-colors backdrop-blur-sm w-full sm:w-auto"
                   >
                     입학 상담 (Contact Us)
                   </motion.button>

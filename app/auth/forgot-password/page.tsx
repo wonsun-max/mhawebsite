@@ -168,13 +168,13 @@ export default function ForgotPasswordPage() {
                     </div>
 
                     {/* Progress Bar */}
-                    <div className="flex justify-between mb-8 relative">
-                        <div className="absolute top-1/2 left-0 w-full h-0.5 bg-white/10 -z-10" />
+                    <div className="flex justify-between mb-8 relative px-2 sm:px-0">
+                        <div className="absolute top-1/2 left-0 w-full h-px bg-white/10 -z-10" />
                         {steps.map((s, i) => (
                             <div
                                 key={s}
-                                className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${i <= currentStepIndex
-                                    ? "bg-blue-500 text-white shadow-lg shadow-blue-500/30"
+                                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[10px] sm:text-xs font-bold transition-all duration-300 ${i <= currentStepIndex
+                                    ? "bg-blue-500 text-white shadow-lg shadow-blue-500/30 ring-2 ring-blue-500/20"
                                     : "bg-gray-800 text-gray-500 border border-white/10"
                                     }`}
                             >
@@ -251,12 +251,12 @@ export default function ForgotPasswordPage() {
                                         <p className="text-white font-medium">{email}</p>
                                     </div>
 
-                                    <div className="relative group">
-                                        <div className="flex justify-center gap-2">
+                                    <div className="relative group overflow-x-auto pb-4">
+                                        <div className="flex justify-center gap-1.5 sm:gap-2 min-w-[300px] sm:min-w-0">
                                             {[0, 1, 2, 3, 4, 5].map((index) => (
                                                 <div
                                                     key={index}
-                                                    className={`w-12 h-16 rounded-2xl border-2 flex items-center justify-center text-2xl font-bold transition-all duration-300 ${code[index]
+                                                    className={`w-10 h-14 sm:w-12 sm:h-16 rounded-xl sm:rounded-2xl border-2 flex items-center justify-center text-xl sm:text-2xl font-bold transition-all duration-300 ${code[index]
                                                         ? "border-[#D4AF37] bg-white/10 text-white shadow-[0_0_15px_rgba(212,175,55,0.2)]"
                                                         : "border-white/10 bg-white/5 text-gray-600"
                                                         }`}
