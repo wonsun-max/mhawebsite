@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Camera, Calendar, ImageIcon } from 'lucide-react';
+import { Camera, Calendar, ImageIcon, User } from 'lucide-react';
 import ContentPageLayout from '@/components/ContentPageLayout';
 import { newsSubNav } from '@/lib/subNavConfig';
 
