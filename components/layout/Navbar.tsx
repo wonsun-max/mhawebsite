@@ -39,7 +39,7 @@ const navLinks = [
   },
   {
     name: '생활관',
-    href: '/dormitory',
+    href: '/dormitory/qualification',
     sublinks: dormitorySubNav.map(link => ({ name: link.label, href: link.href })),
   },
   {
