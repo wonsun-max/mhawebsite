@@ -282,14 +282,14 @@ export default function SignupPage() {
                     <p className="text-white font-medium">{email}</p>
                   </div>
 
-                  <div className="space-y-4">
+                  <div className="relative group">
                     <div className="flex justify-center gap-2">
                       {[0, 1, 2, 3, 4, 5].map((index) => (
                         <div
                           key={index}
                           className={`w-12 h-16 rounded-2xl border-2 flex items-center justify-center text-2xl font-bold transition-all duration-300 ${code[index]
-                              ? "border-[#D4AF37] bg-white/10 text-white shadow-[0_0_15px_rgba(212,175,55,0.2)]"
-                              : "border-white/10 bg-white/5 text-gray-600"
+                            ? "border-[#D4AF37] bg-white/10 text-white shadow-[0_0_15px_rgba(212,175,55,0.2)]"
+                            : "border-white/10 bg-white/5 text-gray-600"
                             }`}
                         >
                           {code[index] || ""}
@@ -297,17 +297,15 @@ export default function SignupPage() {
                       ))}
                     </div>
 
-                    <div className="relative">
-                      <input
-                        type="text"
-                        value={code}
-                        onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
-                        placeholder="000000"
-                        maxLength={6}
-                        className="absolute inset-0 opacity-0 cursor-default"
-                        autoFocus
-                      />
-                    </div>
+                    <input
+                      type="text"
+                      value={code}
+                      onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
+                      placeholder="000000"
+                      maxLength={6}
+                      className="absolute inset-0 opacity-0 cursor-text w-full h-full"
+                      autoFocus
+                    />
                   </div>
 
                   <button
