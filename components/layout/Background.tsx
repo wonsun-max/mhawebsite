@@ -21,7 +21,8 @@ export default function Background() {
                     rotate: [0, 45, 0]
                 }}
                 transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                className="absolute -top-[20%] -left-[10%] w-[80vw] h-[80vw] rounded-full bg-blue-900/40 blur-[120px]"
+                className="absolute -top-[20%] -left-[10%] w-[80vw] h-[80vw] rounded-full bg-blue-900/40 blur-[80px] will-change-transform"
+                style={{ willChange: 'transform, opacity' }}
             />
             <motion.div
                 animate={{
@@ -31,7 +32,8 @@ export default function Background() {
                     y: [0, -30, 0]
                 }}
                 transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                className="absolute top-[20%] right-0 w-[60vw] h-[60vw] rounded-full bg-[#D4AF37]/15 blur-[100px]"
+                className="absolute top-[20%] right-0 w-[60vw] h-[60vw] rounded-full bg-[#D4AF37]/15 blur-[60px] will-change-transform"
+                style={{ willChange: 'transform, opacity' }}
             />
             <motion.div
                 animate={{
@@ -39,7 +41,8 @@ export default function Background() {
                     opacity: [0.1, 0.3, 0.1],
                 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute bottom-0 left-1/3 w-[90vw] h-[50vw] rounded-full bg-indigo-900/40 blur-[120px]"
+                className="absolute bottom-0 left-1/3 w-[90vw] h-[50vw] rounded-full bg-indigo-900/40 blur-[80px] will-change-transform"
+                style={{ willChange: 'transform, opacity' }}
             />
         </div>
     )

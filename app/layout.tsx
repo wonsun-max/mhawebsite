@@ -4,9 +4,13 @@ import Navbar from "@/components/layout/Navbar"
 import Footer from "@/components/layout/Footer"
 import SessionProvider from "@/components/providers/SessionProvider"
 import { AuthProvider } from "@/contexts/AuthContext"
-import Chatbot from "@/components/features/Chatbot"
+import dynamic from "next/dynamic"
 import { Outfit, Cormorant_Garamond, Noto_Sans_KR, Nanum_Myeongjo } from "next/font/google"
 import Background from "@/components/layout/Background"
+
+const Chatbot = dynamic(() => import("@/components/features/Chatbot"), {
+  ssr: false,
+})
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -25,7 +29,7 @@ const cormorant = Cormorant_Garamond({
 
 const notoSansKr = Noto_Sans_KR({
   subsets: ["latin"],
-  weight: ["100", "300", "400", "500", "700", "900"],
+  weight: ["300", "400", "500", "700"],
   variable: "--font-noto-sans-kr",
   display: "swap",
   fallback: ['system-ui', 'sans-serif'],
@@ -33,7 +37,7 @@ const notoSansKr = Noto_Sans_KR({
 
 const nanumMyeongjo = Nanum_Myeongjo({
   subsets: ["latin"],
-  weight: ["400", "700", "800"],
+  weight: ["400", "700"],
   variable: "--font-nanum-myeongjo",
   display: "swap",
   fallback: ['Georgia', 'serif'],

@@ -41,7 +41,7 @@ export default function HomePage() {
       {/* Hero Section - Cinematic & Immersive */}
       <section ref={containerRef} className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image Carousel with Parallax */}
-        <motion.div style={{ y }} className="absolute inset-0 z-0">
+        <motion.div style={{ y }} className="absolute inset-0 z-0 will-change-transform">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentImageIndex}

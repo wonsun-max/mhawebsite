@@ -112,7 +112,7 @@ export default function Navbar() {
                     animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
                     exit={{ opacity: 0, y: 10, scale: 0.95, filter: 'blur(4px)' }}
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64 bg-[#0A1929]/90 backdrop-blur-2xl rounded-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] border border-white/10 overflow-hidden z-50 p-2"
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64 bg-[#0A1929]/90 backdrop-blur-xl rounded-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] border border-white/10 overflow-hidden z-50 p-2"
                   >
                     {/* Decorative gradient blob */}
                     <div className="absolute -top-10 -right-10 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" />
