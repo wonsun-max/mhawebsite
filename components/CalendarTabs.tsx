@@ -138,5 +138,9 @@ function generateICS(sem: Semester) {
 }
 
 function escapeICS(s?: string) {
-  return (s ?? '').replace(/\n/g, '\\n').replace(/,/g, '\\,')
+  return (s ?? '')
+    .replace(/\\/g, '\\\\')
+    .replace(/\n/g, '\\n')
+    .replace(/,/g, '\\,')
+    .replace(/;/g, '\\;')
 }
